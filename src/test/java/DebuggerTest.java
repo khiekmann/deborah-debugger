@@ -2,23 +2,26 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import animal.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 /**
  * Created by HiekmaHe on 04.05.2017.
  *
  */
-public class DebuggerTest
+class DebuggerTest
 {
 
 	private static CompareAnimals compareAnimals;
 
 	@BeforeAll
-	public static void beforeAll() {
+	static void beforeAll() {
 		ArrayList<Animal> animals = new ArrayList();
 		animals.add(new Sloth());
 		animals.add(new Dog());
@@ -29,7 +32,7 @@ public class DebuggerTest
 
 
 	@Test
-	public void testConstructorWithNullObject() {
+	void testConstructorWithNullObject() {
 		// arrange
 		// act
 		Debugger debugger = new Debugger(null);
@@ -39,7 +42,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithNullObject() {
+	void testExpectWithNullObject() {
 		// arrange
 		Object object = null;
 		Debugger expected = new Debugger(object);
@@ -52,7 +55,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithStringObject() {
+	void testExpectWithStringObject() {
 		// arrange
 		String object = "hallo";
 		Debugger expected = new Debugger(object);
@@ -65,7 +68,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithBooleanObjectTrue() {
+	void testExpectWithBooleanObjectTrue() {
 		// arrange
 		Boolean object = Boolean.TRUE;
 		Debugger expected = new Debugger(object);
@@ -78,7 +81,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithBooleanObjectFalse() {
+	void testExpectWithBooleanObjectFalse() {
 		// arrange
 		Boolean object = Boolean.FALSE;
 		Debugger expected = new Debugger(object);
@@ -91,7 +94,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithBooleanTrue() {
+	void testExpectWithBooleanTrue() {
 		// arrange
 		boolean object = true;
 		Debugger expected = new Debugger(object);
@@ -104,7 +107,7 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testExpectWithBooleanFalse() {
+	void testExpectWithBooleanFalse() {
 		// arrange
 		boolean object = false;
 		Debugger expected = new Debugger(object);
@@ -117,223 +120,184 @@ public class DebuggerTest
 	}
 
 	@Test
-	public void testToBeNull() {
+	void testToBeNull() {
 		// arrange
 		Object nullObject = null;
 
-		// act
-		boolean actual = Debugger.expect(nullObject).toBeNull();
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(nullObject).toBeNull().otherwiseComplain();
 	}
 
 	@Test
-	public void testToBeNullFailing() {
+	void testToBeNullFailing() {
 		// arrange
 		Object nullObject = new Object();
 
-		// act
-		boolean actual = Debugger.expect(nullObject).toBeNull();
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(nullObject).toBeNull().otherwiseComplain());
 	}
 
 	@Test
-	public void testToNotBeNull() {
+	void testToNotBeNull() {
 		// arrange
 		Object aObject = new Object();
 
-		// act
-		boolean actual = Debugger.expect(aObject).toNotBeNull();
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(aObject).toNotBeNull().otherwiseComplain();
 	}
 
 	@Test
-	public void testToBeTrue() {
+	void testToBeTrue() {
 		// arrange
 		Boolean aTrue = Boolean.TRUE;
 
-		// act
-		boolean actual = Debugger.expect(aTrue).toBeTrue();
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(aTrue).toBeTrue().otherwiseComplain();
 	}
 
 	@Test
-	public void testToBeTrueFailing() {
+	void testToBeTrueFailing() {
 		// arrange
 		Boolean aFalse = Boolean.FALSE;
 
-		// act
-		boolean actual = Debugger.expect(aFalse).toBeTrue();
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(aFalse).toBeTrue().otherwiseComplain());
 	}
 
 	@Test
-	public void testToBeFalse() {
+	void testToBeFalse() {
 		// arrange
 		Boolean aFalse = Boolean.FALSE;
 
-		// act
-		boolean actual = Debugger.expect(aFalse).toBeFalse();
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(aFalse).toBeFalse().otherwiseComplain();
 	}
 
 	@Test
-	public void testToBeFalseFailing() {
+	void testToBeFalseFailing() {
 		// arrange
 		Boolean aTrue = Boolean.TRUE;
 
-		// act
-		boolean actual = Debugger.expect(aTrue).toBeFalse();
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(aTrue).toBeFalse().otherwiseComplain());
 	}
 
 	@Test
-	public void testStringObjectToBeEqualToSameStringObject() {
+	void testStringObjectToBeEqualToSameStringObject() {
 		// arrange
 		String message = "hi!";
 		String sameMessage = message;
 
-		// act
-		boolean actual = Debugger.expect(message).toBeEqualTo(sameMessage);
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(message).toBeEqualTo(sameMessage).otherwiseComplain();
 	}
 
 	@Test
-	public void testStringObjectToBeEqualToNotSameStringObjectFailing() {
+	void testStringObjectToBeEqualToNotSameStringObjectFailing() {
 		// arrange
 		String message = "hi!";
 		String notSameMessage = "hello!";
 
-		// act
-		boolean actual = Debugger.expect(message).toBeEqualTo(notSameMessage);
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(message).toBeEqualTo(notSameMessage).otherwiseComplain());
 	}
 
 	@Test
-	public void testNullObjectToBeEqualToNullObject() {
+	void testNullObjectToBeEqualToNullObject() {
 		// arrange
 		Object nullObject = null;
 		Object anotherNullObject = null;
 
-		// act
-		boolean actual = Debugger.expect(nullObject).toBeEqualTo(anotherNullObject);
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
 	}
 
 	@Test
-	public void testNullObjectToBeEqualToObjectFailing() {
+	void testNullObjectToBeEqualToObjectFailing() {
 		// arrange
 		Object nullObject = null;
 		Object object = new Object();
 
-		// act
-		boolean actual = Debugger.expect(nullObject).toBeEqualTo(object);
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(nullObject).toBeEqualTo(object).otherwiseComplain());
 	}
 
 	@Test
-	public void testObjectToBeEqualToNullObjectFailing() {
+	void testObjectToBeEqualToNullObjectFailing() {
 		// arrange
 		Object object = new Object();
 		Object nullObject = null;
 
-		// act
-		boolean actual = Debugger.expect(object).toBeEqualTo(nullObject);
-
-		// assert
-		assertFalse(actual);
+		// act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(object).toBeEqualTo(nullObject).otherwiseComplain());
 	}
 
 	@Test
-	public void testDogEqualToDogUsingComparator() {
+	void testDogEqualToDogUsingComparator() {
 		// arrange
-		// act
-		boolean actual = Debugger.expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals);
-
-		// assert
-		assertTrue(actual);
+		// act // assert
+		Debugger.expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals).otherwiseComplain();
 	}
 
 	@Test
-	public void testDogEqualToCatUsingComparatorFailing() {
-		// arrange
-		// act
-		boolean actual = Debugger.expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals);
-
-		// Assert
-		assertFalse(actual);
+	void testDogEqualToCatUsingComparatorFailing() {
+		// arrange // act // assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals).otherwiseComplain());
 	}
 
 	@Test
-	public void testIntToBeEqualToOtherInt() {
+	void testIntToBeEqualToOtherInt() {
 		// arrange
 		int one = 1;
 		int oneAgain = one;
 
-		// act
-		boolean actual = Debugger.expect(one).toBeEqualTo(oneAgain);
-
-		// assert
-		assertTrue(actual);
+		// act //assert
+		Debugger.expect(one).toBeEqualTo(oneAgain).otherwiseComplain();
 	}
 
 	@Test
-	public void testIntToBeEqualToOtherIntFailing() {
+	void testIntToBeEqualToOtherIntFailing() {
 		// arrange
 		int one = 1;
 		int two = 2;
 
-		// act
-		boolean actual = Debugger.expect(one).toBeEqualTo(two);
-
-		// assert
-		assertFalse(actual);
+		// act //assert
+		assertThrows(
+				AssertionFailedError.class, () ->
+						Debugger.expect(one).toBeEqualTo(two).otherwiseComplain());
 	}
 
 	@Test
-	public void testLongObjectToBeEqualToOtherLongObject() {
+	void testLongObjectToBeEqualToOtherLongObject() {
 		// arrange
 		Long max = Long.MAX_VALUE;
 		Long maxAgain = max;
 
-		// act
-		boolean actual = Debugger.expect(max).toBeEqualTo(maxAgain);
-
-		// assert
-		assertTrue(actual);
+		// act //assert
+		Debugger.expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
 	}
 
 	@Test
-	public void testLongObjectToBeEqualToOtherLongObjectFailing() {
+	void testLongObjectToBeEqualToOtherLongObjectFailing() {
 	// arrange
 	Long max = Long.MAX_VALUE;
 	Long min = Long.MIN_VALUE;
 
-	// act
-	boolean actual = Debugger.expect(max).toBeEqualTo(min);
-
-	// assert
-	assertFalse(actual);
+	// act //assert
+	Debugger.expect(max).toBeNotEqualTo(min).otherwiseComplain();
 	}
 }

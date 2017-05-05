@@ -1,6 +1,8 @@
 import java.math.BigDecimal;
 import java.util.Comparator;
 
+import org.opentest4j.AssertionFailedError;
+
 
 /**
  * Created by HiekmaHe on 04.05.2017.
@@ -11,9 +13,9 @@ public class Debugger
 	private final static String N = System.getProperty("line.separator");
 	private final Object this_;
 
-	private boolean failureAsserted;
 	private Object other;
-	private As thisIs;
+	private As relationToOther;
+	private boolean passed = false;
 
 	public static String show(Object object) {
 		StackTraceElement lastCall = Thread.currentThread().getStackTrace()[2];
@@ -78,8 +80,8 @@ public class Debugger
 	{
 		this_ = object;
 		other = object;
-		failureAsserted = false;
-		thisIs = As.notSet;
+		passed = false;
+		relationToOther = As.notSet;
 	}
 
 	@Override
@@ -111,42 +113,56 @@ public class Debugger
 		other = object;
 	}
 
-	private void thisRelatesToOther(As thisIs)
+	private void thisRelatesToOther(As relation)
 	{
-		this.thisIs = thisIs;
+		this.relationToOther = relation;
+	}
+
+	// Methods used for feedback
+
+	private boolean failed()
+	{
+		return ! passed;
+	}
+
+
+	public void otherwiseAnnounce(String message)
+	{
+		System.err.println(message);
+		if (failed()) {
+			throw new AssertionFailedError(message);
+		}
+	}
+
+	public void otherwiseComplain()
+	{
+		otherwiseAnnounce(
+				N + "\u21AF \'" + classAndStringOf(this_) + "\'"
+						+ N + "\u21AF expected to be " + relationToOther
+						+ N + "\u21AF \'" + classAndStringOf(other) + "\'"
+						+ N + "\u21AF Ex falso quodlibet!" );
+	}
+
+	private String classAndStringOf(Object object) {
+		String message;
+		if (object != null) {
+			message = object.getClass() + ": " + object ;
+		} else {
+			message = "class null: null-object";
+		}
+		return message;
+	}
+
+	public void otherwiseMurmur()
+	{
+		otherwiseAnnounce("");
 	}
 
 	// Methods comparing thisObject with otherObject
 
-	public boolean toBeNull()
+	private void passed(boolean passed)
 	{
-		thisRelatesToOther(As.null_);
-		return this_ == null;
-	}
-
-	public boolean toNotBeNull()
-	{
-		thisRelatesToOther(As.notNull);
-		return ! toBeNull();
-	}
-
-	public boolean toBeTrue()
-	{
-		thisRelatesToOther(As.true_);
-		return this_ == Boolean.TRUE;
-	}
-
-	public boolean toBeFalse()
-	{
-		thisRelatesToOther(As.false_);
-		return ! toBeTrue();
-	}
-
-	public boolean toBeEqualTo(Object object)
-	{
-		other(object);
-		thisRelatesToOther(As.equal);
-		return thisObjectEqualsToOtherObject();
+		this.passed = passed;
 	}
 
 	private boolean thisObjectEqualsToOtherObject()
@@ -160,22 +176,70 @@ public class Debugger
 		return bothEqual;
 	}
 
-	public boolean toBeEqualTo(Object object, Comparator comparator) {
-		other(object);
-		thisRelatesToOther(As.equal);
-		return comparator.compare(this_, other) == 0;
-	}
-
-	public boolean toBeEqualTo(Number number)
-	{
-		other(number);
-		thisRelatesToOther(As.equal);
-		return (compareAsNumber(this_, other) == 0);
-	}
-
 	public int compareAsNumber(Object first, Object second) {
 		BigDecimal firstNumber = new BigDecimal(first.toString());
 		BigDecimal secondNumber = new BigDecimal(second.toString());
 		return firstNumber.compareTo(secondNumber);
+	}
+
+	public Debugger toBeNull()
+	{
+		thisRelatesToOther(As.null_);
+		passed(this_ == null);
+		return this;
+	}
+
+	public Debugger toNotBeNull()
+	{
+		thisRelatesToOther(As.notNull);
+		passed(this_ != null);
+		return this;
+	}
+
+	public Debugger toBeTrue()
+	{
+		other(Boolean.TRUE);
+		thisRelatesToOther(As.true_);
+		passed(this_ == Boolean.TRUE);
+		return this;
+	}
+
+	public Debugger toBeFalse()
+	{
+		other(Boolean.FALSE);
+		thisRelatesToOther(As.false_);
+		passed(this_ == Boolean.FALSE);
+		return this;
+	}
+
+	public Debugger toBeEqualTo(Object object)
+	{
+		other(object);
+		thisRelatesToOther(As.equal);
+		passed(thisObjectEqualsToOtherObject());
+		return this;
+	}
+
+	public Debugger toBeEqualTo(Object object, Comparator comparator) {
+		other(object);
+		thisRelatesToOther(As.equal);
+		passed(comparator.compare(this_, other) == 0);
+		return this;
+	}
+
+	public Debugger toBeEqualTo(Number number)
+	{
+		other(number);
+		thisRelatesToOther(As.equal);
+		passed(compareAsNumber(this_, other) == 0);
+		return this;
+	}
+
+	public Debugger toBeNotEqualTo(Number number)
+	{
+		other(number);
+		thisRelatesToOther(As.notEqual);
+		passed(compareAsNumber(this_, other) != 0);
+		return this;
 	}
 }

@@ -9,7 +9,8 @@ public enum As
 	true_("true"),
 	false_("false"),
 	equal("equal to"),
-	greaterThan("greater Than");
+	greaterThan("greater Than"),
+	notEqual("not equal");
 
 	public final String description;
 
