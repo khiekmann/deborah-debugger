@@ -10,7 +10,8 @@ public enum As
 	false_("false"),
 	equal("equal to"),
 	greaterThan("greater Than"),
-	notEqual("not equal");
+	notEqual("not equal"),
+	lessThan("less than");
 
 	public final String description;
 

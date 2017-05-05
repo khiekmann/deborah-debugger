@@ -66,7 +66,7 @@ public class Debugger
 		System.exit(exitCode);
 	}
 
-	public static void sleep(long millis)
+	public static void sleepFor(long millis)
 	{
 		try {
 			Thread.sleep(millis);
@@ -244,6 +244,14 @@ public class Debugger
 		other(number);
 		thisRelatesToOther(As.notEqual);
 		passed(compareAsNumber(this_, other) != 0);
+		return this;
+	}
+
+	public Debugger lessThan(Number number)
+	{
+		other(number);
+		thisRelatesToOther(As.lessThan);
+		passed(compareAsNumber(this_, other) < 0);
 		return this;
 	}
 }
