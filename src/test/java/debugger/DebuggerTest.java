@@ -1,3 +1,5 @@
+package debugger;
+
 import animal.CompareAnimals;
 
 

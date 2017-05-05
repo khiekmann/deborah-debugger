@@ -1,5 +1,9 @@
+package debugger;
+
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
+
+import debugger.Debugger;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

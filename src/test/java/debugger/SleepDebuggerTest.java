@@ -1,4 +1,8 @@
+package debugger;
+
 import org.junit.jupiter.api.Test;
+
+import debugger.Debugger;
 
 
 /**

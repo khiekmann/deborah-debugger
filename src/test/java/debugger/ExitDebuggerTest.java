@@ -1,3 +1,8 @@
+package debugger;
+
+import debugger.Debugger;
+
+
 /**
  * Created by HiekmaHe on 05.05.2017.
  *

@@ -1,7 +1,11 @@
+package debugger;
+
 import java.math.BigDecimal;
 import java.util.Comparator;
 
 import org.opentest4j.AssertionFailedError;
+
+import static debugger.Print.print;
 
 
 /**
@@ -11,6 +15,7 @@ import org.opentest4j.AssertionFailedError;
 public class Debugger
 {
 	private final static String N = System.getProperty("line.separator");
+
 	private final Object this_;
 
 	private Object other;
@@ -18,27 +23,7 @@ public class Debugger
 	private boolean passed = false;
 
 	public static String show(Object object) {
-		return show(object, 3);
-	}
-
-	public static String show(Object object, int stack) {
-		StackTraceElement lastCall = Thread.currentThread().getStackTrace()[stack];
-		String message = createMessage(lastCall, object);
-		return printToConsole(message);
-	}
-
-	private static String createMessage(StackTraceElement lastCall, Object object)
-	{
-		return String.format(
-				".(%s:%d): %s",
-				lastCall.getFileName(), lastCall.getLineNumber(), String.valueOf(object)
-		);
-	}
-
-	private static String printToConsole(String message)
-	{
-		System.out.println(message);
-		return message;
+		return print(object).toConsole();
 	}
 
 	public static void exit(Object object)
@@ -66,11 +51,10 @@ public class Debugger
 		System.exit(exitCode);
 	}
 
-	public static void sleepFor(long millis)
-	{
+	public static void sleepFor(long millis) {
 		try {
 			Thread.sleep(millis);
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
 			System.err.println(e.getMessage());
 		}
 	}
@@ -132,7 +116,7 @@ public class Debugger
 
 	public void otherwiseAnnounce(String message)
 	{
-		show(message,3);
+		show(message);
 		if (failed()) {
 			throw new AssertionFailedError(message);
 		}
@@ -142,23 +126,25 @@ public class Debugger
 	{
 		otherwiseAnnounce(
 				N + "\u21AF \'" + classAndStringOf(this_) + "\'"
-						+ N + "\u21AF expected to be " + relationToOther
+						+ N + "\u21AF expected to be " + relationToOther.description + " but was"
 						+ N + "\u21AF \'" + classAndStringOf(other) + "\'"
-						+ N + "\u21AF Ex falso quodlibet!" );
+						+ N);
 	}
 
 	private String classAndStringOf(Object object) {
 		String message;
 		if (object != null) {
-			message = object.getClass() + ": " + object ;
+			message = object.getClass() + " " + object ;
+			message = message.replace("class ", "");
 		} else {
-			message = "class null: null-object";
+			message = "null";
 		}
 		return message;
 	}
 
 	public void otherwiseMurmur()
 	{
+		show("murmur");
 		otherwiseAnnounce("");
 	}
 
@@ -247,11 +233,19 @@ public class Debugger
 		return this;
 	}
 
-	public Debugger lessThan(Number number)
+	public Debugger toBeLessThan(Number number)
 	{
 		other(number);
 		thisRelatesToOther(As.lessThan);
 		passed(compareAsNumber(this_, other) < 0);
+		return this;
+	}
+
+	public Debugger toBeGreaterThan(Number number)
+	{
+		other(number);
+		thisRelatesToOther(As.greaterThan);
+		passed(compareAsNumber(this_, other) > 0);
 		return this;
 	}
 }
