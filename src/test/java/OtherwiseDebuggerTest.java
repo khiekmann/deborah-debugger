@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class DebuggerOtherwiseTest
+public class OtherwiseDebuggerTest
 {
 	@Test
 	public void testMurmur() {

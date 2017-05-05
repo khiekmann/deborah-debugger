@@ -18,7 +18,11 @@ public class Debugger
 	private boolean passed = false;
 
 	public static String show(Object object) {
-		StackTraceElement lastCall = Thread.currentThread().getStackTrace()[2];
+		return show(object, 3);
+	}
+
+	public static String show(Object object, int stack) {
+		StackTraceElement lastCall = Thread.currentThread().getStackTrace()[stack];
 		String message = createMessage(lastCall, object);
 		return printToConsole(message);
 	}
@@ -128,7 +132,7 @@ public class Debugger
 
 	public void otherwiseAnnounce(String message)
 	{
-		System.err.println(message);
+		show(message,3);
 		if (failed()) {
 			throw new AssertionFailedError(message);
 		}
