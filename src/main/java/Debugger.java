@@ -1,3 +1,7 @@
+import java.math.BigDecimal;
+import java.util.Comparator;
+
+
 /**
  * Created by HiekmaHe on 04.05.2017.
  *
@@ -5,11 +9,11 @@
 public class Debugger
 {
 	private final static String N = System.getProperty("line.separator");
-	private final Object thisObject;
+	private final Object this_;
 
 	private boolean failureAsserted;
-	private Object otherObject;
-	private RelatesAs thisIs;
+	private Object other;
+	private As thisIs;
 
 	public static String show(Object object) {
 		StackTraceElement lastCall = Thread.currentThread().getStackTrace()[2];
@@ -72,15 +76,15 @@ public class Debugger
 
 	public Debugger(Object object)
 	{
-		thisObject = object;
-		otherObject = object;
+		this_ = object;
+		other = object;
 		failureAsserted = false;
-		thisIs = RelatesAs.notSet;
+		thisIs = As.notSet;
 	}
 
 	@Override
 	public int hashCode() {
-		return String.valueOf(thisObject).hashCode();
+		return String.valueOf(this_).hashCode();
 	}
 
 	@Override
@@ -102,12 +106,12 @@ public class Debugger
 		return hashCode() == object.hashCode();
 	}
 
-	private void otherObject(Object object)
+	private void other(Object object)
 	{
-		otherObject = object;
+		other = object;
 	}
 
-	private void thisRelatesToOtherAs(RelatesAs thisIs)
+	private void thisRelatesToOther(As thisIs)
 	{
 		this.thisIs = thisIs;
 	}
@@ -116,32 +120,32 @@ public class Debugger
 
 	public boolean toBeNull()
 	{
-		thisRelatesToOtherAs(RelatesAs.null_);
-		return thisObject == null;
+		thisRelatesToOther(As.null_);
+		return this_ == null;
 	}
 
 	public boolean toNotBeNull()
 	{
-		thisRelatesToOtherAs(RelatesAs.notNull);
+		thisRelatesToOther(As.notNull);
 		return ! toBeNull();
 	}
 
 	public boolean toBeTrue()
 	{
-		thisRelatesToOtherAs(RelatesAs.true_);
-		return thisObject == Boolean.TRUE;
+		thisRelatesToOther(As.true_);
+		return this_ == Boolean.TRUE;
 	}
 
 	public boolean toBeFalse()
 	{
-		thisRelatesToOtherAs(RelatesAs.false_);
+		thisRelatesToOther(As.false_);
 		return ! toBeTrue();
 	}
 
-	public boolean toBeEqualTo(Object otherObject)
+	public boolean toBeEqualTo(Object object)
 	{
-		otherObject(otherObject);
-		thisRelatesToOtherAs(RelatesAs.equal);
+		other(object);
+		thisRelatesToOther(As.equal);
 		return thisObjectEqualsToOtherObject();
 	}
 
@@ -149,16 +153,29 @@ public class Debugger
 	{
 		boolean bothEqual;
 		try {
-			bothEqual = thisObject.equals(otherObject);
+			bothEqual = this_.equals(other);
 		} catch (NullPointerException e) {
-			bothEqual = (thisObject == null) && (otherObject == null);
+			bothEqual = (this_ == null) && (other == null);
 		}
 		return bothEqual;
 	}
 
-	public boolean toBeGreaterThan(Object otherObject)
+	public boolean toBeEqualTo(Object object, Comparator comparator) {
+		other(object);
+		thisRelatesToOther(As.equal);
+		return comparator.compare(this_, other) == 0;
+	}
+
+	public boolean toBeEqualTo(Number number)
 	{
-		this.otherObject = otherObject;
-		return false;
+		other(number);
+		thisRelatesToOther(As.equal);
+		return (compareAsNumber(this_, other) == 0);
+	}
+
+	public int compareAsNumber(Object first, Object second) {
+		BigDecimal firstNumber = new BigDecimal(first.toString());
+		BigDecimal secondNumber = new BigDecimal(second.toString());
+		return firstNumber.compareTo(secondNumber);
 	}
 }

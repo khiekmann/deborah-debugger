@@ -1,4 +1,9 @@
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import animal.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class DebuggerTest
 {
+
+	private static CompareAnimals compareAnimals;
+
+	@BeforeAll
+	public static void beforeAll() {
+		ArrayList<Animal> animals = new ArrayList();
+		animals.add(new Sloth());
+		animals.add(new Dog());
+		animals.add(new Cat());
+
+		compareAnimals = new CompareAnimals(animals);
+	}
+
+
 	@Test
 	public void testConstructorWithNullObject() {
 		// arrange
@@ -246,30 +265,75 @@ public class DebuggerTest
 		assertFalse(actual);
 	}
 
-
 	@Test
-	public void testToBeGreaterThan() {
+	public void testDogEqualToDogUsingComparator() {
 		// arrange
-		int one = 1;
-		int two = 2;
-
 		// act
-		boolean actual = Debugger.expect(two).toBeGreaterThan(one);
+		boolean actual = Debugger.expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals);
 
 		// assert
 		assertTrue(actual);
 	}
 
 	@Test
-	public void testToBeGreaterThanFailing() {
+	public void testDogEqualToCatUsingComparatorFailing() {
+		// arrange
+		// act
+		boolean actual = Debugger.expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals);
+
+		// Assert
+		assertFalse(actual);
+	}
+
+	@Test
+	public void testIntToBeEqualToOtherInt() {
+		// arrange
+		int one = 1;
+		int oneAgain = one;
+
+		// act
+		boolean actual = Debugger.expect(one).toBeEqualTo(oneAgain);
+
+		// assert
+		assertTrue(actual);
+	}
+
+	@Test
+	public void testIntToBeEqualToOtherIntFailing() {
 		// arrange
 		int one = 1;
 		int two = 2;
 
 		// act
-		boolean actual = Debugger.expect(one).toBeGreaterThan(two);
+		boolean actual = Debugger.expect(one).toBeEqualTo(two);
+
+		// assert
+		assertFalse(actual);
+	}
+
+	@Test
+	public void testLongObjectToBeEqualToOtherLongObject() {
+		// arrange
+		Long max = Long.MAX_VALUE;
+		Long maxAgain = max;
+
+		// act
+		boolean actual = Debugger.expect(max).toBeEqualTo(maxAgain);
 
 		// assert
 		assertTrue(actual);
+	}
+
+	@Test
+	public void testLongObjectToBeEqualToOtherLongObjectFailing() {
+	// arrange
+	Long max = Long.MAX_VALUE;
+	Long min = Long.MIN_VALUE;
+
+	// act
+	boolean actual = Debugger.expect(max).toBeEqualTo(min);
+
+	// assert
+	assertFalse(actual);
 	}
 }
