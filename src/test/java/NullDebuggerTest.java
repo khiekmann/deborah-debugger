@@ -12,8 +12,7 @@ public class NullDebuggerTest
 {
 	@Test
 	void testConstructorWithNullObject() {
-		// arrange
-		// act
+		// arrange // act
 		Debugger debugger = new Debugger(null);
 
 		// assert
