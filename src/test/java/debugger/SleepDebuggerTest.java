@@ -19,7 +19,7 @@ public class SleepDebuggerTest
 		long duration = System.currentTimeMillis() - startTime;
 
 		// assert
-		Debugger.expect(duration).toBeGreaterThan(twoSeconds).otherwiseComplain();
+		Debugger.expect(duration).toBeGreaterThanOrEqualTo(twoSeconds).otherwiseComplain();
 		Debugger.expect(duration).toBeLessThan(twoSeconds + 20 /*millis*/).otherwiseComplain();
 	}
 }

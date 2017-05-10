@@ -11,9 +11,10 @@ public enum As
 	true_("true"),
 	false_("false"),
 	equal("equal to"),
-	greaterThan("greater Than"),
+	greaterThan("greater than"),
 	notEqual("not equal"),
-	lessThan("less than");
+	lessThan("less than"),
+	greaterThanOrEqualTo("greater than or equal to");
 
 	public final String description;
 

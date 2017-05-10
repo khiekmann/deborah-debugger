@@ -248,4 +248,12 @@ public class Debugger
 		passed(compareAsNumber(this_, other) > 0);
 		return this;
 	}
+
+	public Debugger toBeGreaterThanOrEqualTo(Number number)
+	{
+		other(number);
+		thisRelatesToOther(As.greaterThanOrEqualTo);
+		passed(compareAsNumber(this_, other) >= 0);
+		return this;
+	}
 }
