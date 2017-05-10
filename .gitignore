@@ -1,6 +1,8 @@
+gradle*
 settings.gradle*
 .gradle*
-gradle/*
+.gitattributes
+gradle*
 
 .idea*
 .idea/
@@ -9,8 +11,6 @@ gradle/*
 out
 out/*
 *.iml
-
-.gitattributes
 
 # Windows image file caches
 Thumbs.db
