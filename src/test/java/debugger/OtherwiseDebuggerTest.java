@@ -8,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class OtherwiseDebuggerTest
+class OtherwiseDebuggerTest
 {
 	@Test
-	public void testMurmur() {
+	void testMurmur() {
 		assertThrows(
 				AssertionFailedError.class, () ->
 						expect(false).toBeTrue().otherwiseMurmur());
 	}
 
 	@Test
-	public void testMurmurExpectMessageToBeEmpty() {
+	void testMurmurExpectMessageToBeEmpty() {
 		// arrange // act
 		String message = expect(true).toBeTrue().otherwiseMurmur();
 
@@ -27,7 +27,7 @@ public class OtherwiseDebuggerTest
 	}
 
 	@Test
-	public void testMurmurExpectMessageToBeNotEmpty() {
+	void testMurmurExpectMessageToBeNotEmpty() {
 		// arrange // act
 		AssertionFailedError assertionFailedError = null;
 		try {
@@ -38,19 +38,18 @@ public class OtherwiseDebuggerTest
 
 		// assert
 		expect(assertionFailedError).toBeNotNull().otherwiseComplain();
-		expect(assertionFailedError.getMessage()).toBeNotEmpty().otherwiseComplain();
 		expect(assertionFailedError.getMessage()).toBeEqualTo("assertion error.").otherwiseComplain();
 	}
 
 	@Test
-	public void testComplain() {
+	void testComplain() {
 		assertThrows(
 				AssertionFailedError.class, () ->
 						expect(false).toBeTrue().otherwiseComplain());
 	}
 
 	@Test
-	public void testComplainExpectMessageToBeEmpty() {
+	void testComplainExpectMessageToBeEmpty() {
 		// arrange // act
 		String message = expect(true).toBeTrue().otherwiseComplain();
 
@@ -59,7 +58,7 @@ public class OtherwiseDebuggerTest
 	}
 
 	@Test
-	public void testComplainExpectMessageToBeNotEmpty() {
+	void testComplainExpectMessageToBeNotEmpty() {
 		// arrange // act
 		AssertionFailedError assertionFailedError = null;
 		try {
@@ -70,19 +69,18 @@ public class OtherwiseDebuggerTest
 
 		// assert
 		expect(assertionFailedError).toBeNotNull().otherwiseComplain();
-		expect(assertionFailedError.getMessage()).toBeNotEmpty().otherwiseComplain();
 		expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(-882627246).otherwiseComplain();
 	}
 
 	@Test
-	public void testAnnounce() {
+	void testAnnounce() {
 		assertThrows(
 				AssertionFailedError.class, () ->
 						expect(false).toBeTrue().otherwiseAnnounce("hello"));
 	}
 
 	@Test
-	public void testAnnounceExpectMessageToBeEmpty() {
+	void testAnnounceExpectMessageToBeEmpty() {
 		// arrange // act
 		String message = expect(true).toBeTrue().otherwiseAnnounce("huh");
 
@@ -91,19 +89,27 @@ public class OtherwiseDebuggerTest
 	}
 
 	@Test
-	public void testAnnounceExpectMessageToBeNotEmpty() {
+	void testAnnounceExpectMessageToBeNotEmpty() {
 		// arrange // act
-		String message = "";
 		AssertionFailedError assertionFailedError = null;
 		try {
-			message = expect(false).toBeTrue().otherwiseAnnounce("ignore me");
+			expect(false).toBeTrue().otherwiseAnnounce("ignore me");
 		} catch ( AssertionFailedError e) {
 			assertionFailedError = e;
 		}
 
 		// assert
 		expect(assertionFailedError).toBeNotNull().otherwiseComplain();
-		expect(assertionFailedError.getMessage()).toBeNotEmpty().otherwiseComplain();
 		expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(443997862).otherwiseComplain();
+	}
+	
+	@Test
+	void testOtherwiseReturnErrorExpectError() {
+		// arrange // act
+		AssertionFailedError error;
+		error = expect(false).toBeTrue().otherwiseReturnError();
+		// assert
+		expect(error).toBeNotNull().otherwiseComplain();
+		expect(error.getMessage()).toBeEqualTo("assertion error.").otherwiseComplain();
 	}
 }
