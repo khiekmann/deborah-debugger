@@ -1,8 +1,9 @@
-gradle*
 settings.gradle*
-.gradle*
+.gradlew
+.gradlew.bat
 .gitattributes
 gradle*
+.gradle/*
 
 .idea*
 .idea/
