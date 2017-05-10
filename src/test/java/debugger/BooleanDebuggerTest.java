@@ -3,8 +3,6 @@ package debugger;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-import debugger.Debugger;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -15,42 +13,29 @@ public class BooleanDebuggerTest
 {
 	@Test
 	void testToBeTrue() {
-		// arrange
-		Boolean aTrue = Boolean.TRUE;
-
-		// act // assert
-		Debugger.expect(aTrue).toBeTrue().otherwiseComplain();
+		// arrange // act // assert
+		Debugger.expect(true).toBeTrue().otherwiseComplain();
 	}
 
 	@Test
 	void testToBeTrueFailing() {
-		// arrange
-		Boolean aFalse = Boolean.FALSE;
-
-		// act // assert
+		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(aFalse).toBeTrue().otherwiseComplain());
+						Debugger.expect(false).toBeTrue().otherwiseComplain());
 	}
 
 	@Test
 	void testToBeFalse() {
-		// arrange
-		Boolean aFalse = Boolean.FALSE;
-
-		// act // assert
-		Debugger.expect(aFalse).toBeFalse().otherwiseComplain();
+		// arrange // act // assert
+		Debugger.expect(false).toBeFalse().otherwiseComplain();
 	}
 
 	@Test
 	void testToBeFalseFailing() {
-		// arrange
-		Boolean aTrue = Boolean.TRUE;
-
-		// act // assert
+		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(aTrue).toBeFalse().otherwiseComplain());
+						Debugger.expect(true).toBeFalse().otherwiseComplain());
 	}
-
 }

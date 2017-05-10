@@ -79,13 +79,6 @@ public class Print
 		return elements[index];
 	}
 
-
-
-
-
-
-
-
 	public String toConsole()
 	{
 		String message = createMessageFor(object);

@@ -71,7 +71,7 @@ dependencies {
 	// testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
 	// 'test.useTestNG()' to your build script.
 	//testCompile 'junit:junit:4.12'
-	// download library for JUnit
+	// download library for JUnit 5
 	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
 	compile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.0-M4'
 	compile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M4'

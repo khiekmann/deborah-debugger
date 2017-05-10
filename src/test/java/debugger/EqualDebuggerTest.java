@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import animal.*;
-import debugger.Debugger;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

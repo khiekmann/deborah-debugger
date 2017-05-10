@@ -3,8 +3,6 @@ package debugger;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-import debugger.Debugger;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -50,6 +48,15 @@ public class NullDebuggerTest
 
 		// act // assert
 		Debugger.expect(aObject).toNotBeNull().otherwiseComplain();
+	}
+
+	@Test
+	void testToBeNotNull() {
+		// arrange
+		Object aObject = new Object();
+
+		// act // assert
+		Debugger.expect(aObject).toBeNotNull().otherwiseComplain();
 	}
 
 	@Test

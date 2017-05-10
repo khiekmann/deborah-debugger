@@ -114,17 +114,9 @@ public class Debugger
 		return ! passed;
 	}
 
-	public void otherwiseAnnounce(String message)
+	public boolean otherwiseComplain()
 	{
-		show(message);
-		if (failed()) {
-			throw new AssertionFailedError(message);
-		}
-	}
-
-	public void otherwiseComplain()
-	{
-		otherwiseAnnounce(
+		return otherwiseAnnounce(
 				N + "\u21AF \'" + classAndStringOf(this_) + "\'"
 						+ N + "\u21AF expected to be " + relationToOther.description + " but was"
 						+ N + "\u21AF \'" + classAndStringOf(other) + "\'"
@@ -142,10 +134,18 @@ public class Debugger
 		return message;
 	}
 
-	public void otherwiseMurmur()
+	public boolean otherwiseMurmur()
 	{
-		show("murmur");
-		otherwiseAnnounce("");
+		return otherwiseAnnounce("mumble, mumble");
+	}
+
+	public boolean otherwiseAnnounce(String message)
+	{
+		if (failed()) {
+			message = show(message);
+			throw new AssertionFailedError(message);
+		}
+		return (message != null);
 	}
 
 	// Methods comparing thisObject with otherObject
@@ -184,6 +184,11 @@ public class Debugger
 		thisRelatesToOther(As.notNull);
 		passed(this_ != null);
 		return this;
+	}
+
+	public Debugger toBeNotNull()
+	{
+		return toNotBeNull();
 	}
 
 	public Debugger toBeTrue()
