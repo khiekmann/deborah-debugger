@@ -1,3 +1,7 @@
+gradle*
+settings.gradle*
+.gradle*
+
 .idea*
 .idea/
 .idea/kotlinc.xml
