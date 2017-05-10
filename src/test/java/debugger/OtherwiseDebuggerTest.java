@@ -3,8 +3,7 @@ package debugger;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-import debugger.Debugger;
-
+import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -17,20 +16,36 @@ public class OtherwiseDebuggerTest
 	public void testMurmur() {
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(false).toBeTrue().otherwiseMurmur());
+						expect(false).toBeTrue().otherwiseMurmur());
+	}
+
+	@Test
+	public void testMurmurExpectSystemOutPrintln() {
+		// arrange
+		String message;
+
+		// act
+		try {
+			message = expect(false).toBeTrue().otherwiseMurmur();
+		} catch (Error e) {
+			message = "";
+		}
+
+		// assert
+		expect(message).toBeNotEmpty().otherwiseComplain();
 	}
 
 	@Test
 	public void testComplain() {
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(false).toBeTrue().otherwiseComplain());
+						expect(false).toBeTrue().otherwiseComplain());
 	}
 
 	@Test
 	public void testAnnounce() {
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(false).toBeTrue().otherwiseAnnounce("hello"));
+						expect(false).toBeTrue().otherwiseAnnounce("hello"));
 	}
 }

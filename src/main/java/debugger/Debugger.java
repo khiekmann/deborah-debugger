@@ -114,7 +114,7 @@ public class Debugger
 		return ! passed;
 	}
 
-	public boolean otherwiseComplain()
+	public String otherwiseComplain()
 	{
 		return otherwiseAnnounce(
 				N + "\u21AF \'" + classAndStringOf(this_) + "\'"
@@ -134,18 +134,25 @@ public class Debugger
 		return message;
 	}
 
-	public boolean otherwiseMurmur()
+	public String otherwiseMurmur()
 	{
 		return otherwiseAnnounce("mumble, mumble");
 	}
 
-	public boolean otherwiseAnnounce(String message)
+	public String otherwiseAnnounce(String message)
 	{
 		if (failed()) {
-			message = show(message);
-			throw new AssertionFailedError(message);
+			message = showMessageAndThrowAssertionFailedError(message);
+		} else {
+			message = "";
 		}
-		return (message != null);
+		return message;
+	}
+
+	private String showMessageAndThrowAssertionFailedError(String message)
+	{
+		show(message);
+		throw new AssertionFailedError(message);
 	}
 
 	// Methods comparing thisObject with otherObject
@@ -184,6 +191,49 @@ public class Debugger
 		thisRelatesToOther(As.notNull);
 		passed(this_ != null);
 		return this;
+	}
+
+	public Debugger toBeEmpty()
+	{
+		other("Not empty");
+		thisRelatesToOther(As.empty);
+		passed(thisNotNullAndEmpty());
+		return this;
+	}
+
+	private boolean thisNotNullAndEmpty()
+	{
+		boolean isNotNullAndEmpty;
+		try {
+			isNotNullAndEmpty = this_.toString().isEmpty();
+		} catch (Exception e) {
+			isNotNullAndEmpty = false;
+		}
+		return isNotNullAndEmpty;
+	}
+
+	public Debugger toNotBeEmpty()
+	{
+		other("empty");
+		thisRelatesToOther(As.notEmpty);
+		passed(thisNullAndNotEmpty());
+		return this;
+	}
+
+	private boolean thisNullAndNotEmpty()
+	{
+		boolean isNotNullAndNotEmpty;
+		try {
+			isNotNullAndNotEmpty = ! this_.toString().isEmpty();
+		} catch (Exception e) {
+			isNotNullAndNotEmpty = false;
+		}
+		return isNotNullAndNotEmpty;
+	}
+
+	public Debugger toBeNotEmpty()
+	{
+		return toNotBeEmpty();
 	}
 
 	public Debugger toBeNotNull()

@@ -14,7 +14,9 @@ public enum As
 	greaterThan("greater than"),
 	notEqual("not equal"),
 	lessThan("less than"),
-	greaterThanOrEqualTo("greater than or equal to");
+	greaterThanOrEqualTo("greater than or equal to"),
+	empty("empty"),
+	notEmpty("not empty");
 
 	public final String description;
 
