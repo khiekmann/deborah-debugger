@@ -1,3 +1,7 @@
+build/*
+Compilation
+target/*
+
 settings.gradle*
 .gradlew
 .gradlew.bat

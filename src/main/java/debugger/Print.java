@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Print
 {
 	private final static ArrayList<String> invalidClassNames =
-			new ArrayList<>(Arrays.asList(new String[]{
+			new ArrayList(Arrays.asList(new String[]{
 					"java.lang.Thread",
 					"debugger.Print",
 					"debugger.Debugger"
