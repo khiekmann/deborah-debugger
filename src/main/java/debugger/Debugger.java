@@ -26,24 +26,25 @@ public class Debugger
 		return print(object).toConsole();
 	}
 
+	public static void exit()
+	{
+		exit("Debugger shuts down.");
+	}
+
+	public static void exit(String message)
+	{
+		show(message);
+		exit(message.hashCode());
+	}
+
 	public static void exit(Object object)
 	{
-		show(object);
 		exit(object.hashCode());
 	}
 
 	public static void exit(Exception exception)
 	{
-		show(exception.getMessage());
-		exit(exception.hashCode());
-	}
-
-
-	public static void exit()
-	{
-		String message = "Debugger shuts down.";
-		show(message);
-		System.exit(message.hashCode());
+		exit(exception.getMessage());
 	}
 
 	public static void exit(int exitCode)
@@ -112,7 +113,6 @@ public class Debugger
 	{
 		return ! passed;
 	}
-
 
 	public void otherwiseAnnounce(String message)
 	{
