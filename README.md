@@ -1,8 +1,7 @@
 # deborah-debugger
 
 ## Find me on jitpack.io 
-[![Release](https://jitpack.io/v/User/Repo.svg)]
-(https://jitpack.io/#User/Repo)
+[![Release](https://jitpack.io/v/khiekmann/deborah-debugger.svg)](https://jitpack.io/khiekmann/deborah-debugger)
 
 ```
    repositories {
