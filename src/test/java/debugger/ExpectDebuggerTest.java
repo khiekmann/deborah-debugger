@@ -2,8 +2,6 @@ package debugger;
 
 import org.junit.jupiter.api.Test;
 
-import debugger.Debugger;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

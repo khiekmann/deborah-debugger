@@ -3,8 +3,6 @@ package debugger;
 import java.math.BigDecimal;
 import java.util.Comparator;
 
-import org.opentest4j.AssertionFailedError;
-
 import static debugger.Print.print;
 
 
@@ -14,7 +12,8 @@ import static debugger.Print.print;
  */
 public class Debugger
 {
-	private final static String N = System.getProperty("line.separator");
+	private final static String n = System.getProperty("line.separator");
+	private final static String murmur = "assertion error.";
 
 	private final Object this_;
 
@@ -117,10 +116,10 @@ public class Debugger
 	public String otherwiseComplain()
 	{
 		return otherwiseAnnounce(
-				N + "\u21AF \'" + classAndStringOf(this_) + "\'"
-						+ N + "\u21AF expected to be " + relationToOther.description + " but was"
-						+ N + "\u21AF \'" + classAndStringOf(other) + "\'"
-						+ N);
+				n + "\u21AF \'" + classAndStringOf(this_) + "\'"
+						+ n + "\u21AF expected to be " + relationToOther.description + " but was"
+						+ n + "\u21AF \'" + classAndStringOf(other) + "\'"
+						+ n);
 	}
 
 	private String classAndStringOf(Object object) {
@@ -136,23 +135,23 @@ public class Debugger
 
 	public String otherwiseMurmur()
 	{
-		return otherwiseAnnounce("mumble, mumble");
+		return otherwiseAnnounce(murmur);
 	}
 
 	public String otherwiseAnnounce(String message)
 	{
 		if (failed()) {
-			message = showMessageAndThrowAssertionFailedError(message);
+			message = showAndThrowAssertionFailedError(message);
 		} else {
 			message = "";
 		}
 		return message;
 	}
 
-	private String showMessageAndThrowAssertionFailedError(String message)
+	private String showAndThrowAssertionFailedError(String message)
 	{
 		show(message);
-		throw new AssertionFailedError(message);
+		return fail(message);
 	}
 
 	// Methods comparing thisObject with otherObject
@@ -310,5 +309,21 @@ public class Debugger
 		thisRelatesToOther(As.greaterThanOrEqualTo);
 		passed(compareAsNumber(this_, other) >= 0);
 		return this;
+	}
+
+	public static String fail(String message)
+	{
+		throw new AssertionFailedError(message);
+	}
+
+	public AssertionFailedError otherwiseReturnError()
+	{
+		AssertionFailedError error = null;
+		try {
+			otherwiseMurmur();
+		} catch (AssertionFailedError e) {
+			error = e;
+		}
+		return error;
 	}
 }
