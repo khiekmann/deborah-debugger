@@ -2,6 +2,7 @@ package debugger;
 
 import org.junit.jupiter.api.Test;
 
+import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -26,7 +27,7 @@ public class NullDebuggerTest
 		Object nullObject = null;
 
 		// act // assert
-		Debugger.expect(nullObject).toBeNull().otherwiseComplain();
+		expect(nullObject).toBeNull().otherwiseComplain();
 	}
 
 	@Test
@@ -37,7 +38,7 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(nullObject).toBeNull().otherwiseComplain());
+						expect(nullObject).toBeNull().otherwiseComplain());
 	}
 
 	@Test
@@ -46,7 +47,7 @@ public class NullDebuggerTest
 		Object aObject = new Object();
 
 		// act // assert
-		Debugger.expect(aObject).toNotBeNull().otherwiseComplain();
+		expect(aObject).toNotBeNull().otherwiseComplain();
 	}
 
 	@Test
@@ -55,7 +56,7 @@ public class NullDebuggerTest
 		Object aObject = new Object();
 
 		// act // assert
-		Debugger.expect(aObject).toBeNotNull().otherwiseComplain();
+		expect(aObject).toBeNotNull().otherwiseComplain();
 	}
 
 	@Test
@@ -65,7 +66,7 @@ public class NullDebuggerTest
 		Object anotherNullObject = null;
 
 		// act // assert
-		Debugger.expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
+		expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
 	}
 
 	@Test
@@ -77,7 +78,7 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(nullObject).toBeEqualTo(object).otherwiseComplain());
+						expect(nullObject).toBeEqualTo(object).otherwiseComplain());
 	}
 
 	@Test
@@ -89,6 +90,6 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(object).toBeEqualTo(nullObject).otherwiseComplain());
+						expect(object).toBeEqualTo(nullObject).otherwiseComplain());
 	}
 }

@@ -2,6 +2,8 @@ package debugger;
 
 import org.junit.jupiter.api.Test;
 
+import static debugger.Debugger.expect;
+
 
 /**
  * Created by HiekmaHe on 05.05.2017.
@@ -19,7 +21,7 @@ public class SleepDebuggerTest
 		long duration = System.currentTimeMillis() - startTime;
 
 		// assert
-		Debugger.expect(duration).toBeGreaterThanOrEqualTo(twoSeconds).otherwiseComplain();
-		Debugger.expect(duration).toBeLessThan(twoSeconds + 20 /*millis*/).otherwiseComplain();
+		expect(duration).toBeGreaterThanOrEqualTo(twoSeconds).otherwiseComplain();
+		expect(duration).toBeLessThan(twoSeconds + 20 /*millis*/).otherwiseComplain();
 	}
 }

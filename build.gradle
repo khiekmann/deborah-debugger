@@ -38,7 +38,9 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 // JUnit 5
-// travis apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+version = '1.0.0-SNAPSHOT'
 
 //  jitpackio
 group = 'com.github.khiekmann'
@@ -59,7 +61,7 @@ buildscript {
 repositories {
 	// Use 'jcenter' for resolving your dependencies.
 	// You can declare any Maven/Ivy/file repository here.
-	jcenter()
+	mavenCentral()
 }
 
 dependencies {
@@ -79,6 +81,8 @@ dependencies {
 
 	// compile project for testing using Junit Jupiter Api
 	testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+
+	testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M4'
 }
 
 junitPlatform {

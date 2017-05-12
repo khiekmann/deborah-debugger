@@ -1,6 +1,9 @@
 package debugger;
 
-import debugger.Debugger;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static debugger.Debugger.exit;
 
 
 /**
@@ -11,23 +14,27 @@ import debugger.Debugger;
  */
 class ExitDebuggerTest
 {
-	//	@Test
+	@Disabled
+	@Test
 	void testExit() {
-		Debugger.exit();
+		exit();
 	}
 
-	//	@Test
+	@Disabled
+	@Test
 	void testExitWithException() {
-		Debugger.exit(new Exception("Exception"));
+		exit(new Exception("Exception"));
 	}
 
-	//	@Test
+	@Disabled
+	@Test
 	void testExitWithObject() {
-		Debugger.exit(new Object());
+		exit(new Object());
 	}
 
-	// @Test
+	@Disabled
+	@Test
 	void testExitWithExitCode() {
-		Debugger.exit(-1337);
+		exit(-1337);
 	}
 }
