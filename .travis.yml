@@ -23,5 +23,5 @@ addons:
 install:
    - gradle -version
 
-script:
-   - gradle check
+#script:
+#   - gradle check
