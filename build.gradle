@@ -38,7 +38,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 // JUnit 5
-apply plugin: 'org.junit.platform.gradle.plugin'
+// travis apply plugin: 'org.junit.platform.gradle.plugin'
 
 //  jitpackio
 group = 'com.github.khiekmann'
