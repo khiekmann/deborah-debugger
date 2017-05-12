@@ -19,7 +19,7 @@ addons:
 
 # Display Gradle version instead of letting Travis execute './gradlew assemble' by default
 install:
-  - ./gradlew -version
+   - gradle -version
 
 script:
-- ./gradlew check --scan
+   - gradle check --scan
