@@ -5,7 +5,7 @@ before_cache:
   - "rm -fr $HOME/.gradle/caches/*/plugin-resolution/"
 
 before_install:
-  	- chmod +x gradlew
+  - chmod +x gradlew
 
 #before_install:
 #  - "chmod +x gradlew"
@@ -17,4 +17,4 @@ cache:
 language: java
 script: 
   - "gradle check"
-  - "gradle assemble"
+  - "gradle assemble"   
