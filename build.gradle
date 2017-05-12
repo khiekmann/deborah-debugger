@@ -37,6 +37,16 @@ apply plugin: 'java'
 // https://jitpack.io/docs/BUILDING/
 apply plugin: 'maven'
 
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		// Gradle plugin
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+	}
+}
+
 // JUnit 5
 apply plugin: 'org.junit.platform.gradle.plugin'
 
@@ -48,15 +58,7 @@ group = 'com.github.khiekmann'
 // JUnit 5
 sourceCompatibility = 1.8
 
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		// Gradle plugin
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
-	}
-}
+
 
 repositories {
 	// Use 'jcenter' for resolving your dependencies.
@@ -81,15 +83,14 @@ dependencies {
 
 	// compile project for testing using Junit Jupiter Api
 	testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
-
-	testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M4'
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
 }
 
 junitPlatform {
-	platformVersion "1.0.0-M4"
+	//platformVersion "1.0.0-M4"
 	filters {
 		engines {
-			include 'junit-jupiter'
+			// include 'junit-jupiter'
 			// exclude 'junit-vintage'
 		}
 		tags {
@@ -102,5 +103,6 @@ junitPlatform {
 		}
 		//includeClassNamePattern '.*Spec'
 		includeClassNamePatterns '.*Test', '.*Tests'
+		//logManager 'org.apache.logging.log4j.jul.LogManager'
 	}
 }
