@@ -29,4 +29,14 @@ public class NotEqualDebuggerTest
 		// act //assert
 		expect(object).toBeNotEqualTo(otherObject).otherwiseComplain();
 	}
+
+	@Test
+	void testObjectToBeEqualToOtherLongObjectFailing2() {
+		// arrange
+		Object object = new Object();
+		Object otherObject = new Object();
+
+		// act //assert
+		expect(object).toNotBeEqualTo(otherObject).otherwiseComplain();
+	}
 }

@@ -270,6 +270,10 @@ public class Debugger
 		return this;
 	}
 
+	public Debugger toNotBeEqualTo(Object object)
+	{
+		return toBeEqualTo(object);
+	}
 
 	public Debugger toBeEqualTo(Object object, Comparator comparator) {
 		other(object);
