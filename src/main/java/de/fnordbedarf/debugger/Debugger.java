@@ -262,6 +262,15 @@ public class Debugger
 		return this;
 	}
 
+	public Debugger toBeNotEqualTo(Object object)
+	{
+		other(object);
+		thisRelatesToOther(As.notEqual);
+		passed(! thisObjectEqualsToOtherObject());
+		return this;
+	}
+
+
 	public Debugger toBeEqualTo(Object object, Comparator comparator) {
 		other(object);
 		thisRelatesToOther(As.equal);
@@ -312,16 +321,5 @@ public class Debugger
 	public static String fail(String message)
 	{
 		throw new AssertionFailedError(message);
-	}
-
-	public AssertionFailedError otherwiseReturnError()
-	{
-		AssertionFailedError error = null;
-		try {
-			otherwiseMurmur();
-		} catch (AssertionFailedError e) {
-			error = e;
-		}
-		return error;
 	}
 }

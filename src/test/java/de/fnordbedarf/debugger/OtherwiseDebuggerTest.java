@@ -101,14 +101,4 @@ class OtherwiseDebuggerTest
 		Debugger.expect(assertionFailedError).toBeNotNull().otherwiseComplain();
 		Debugger.expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(443997862).otherwiseComplain();
 	}
-	
-	@Test
-	void testOtherwiseReturnErrorExpectError() {
-		// arrange // act
-		AssertionFailedError error;
-		error = Debugger.expect(false).toBeTrue().otherwiseReturnError();
-		// assert
-		Debugger.expect(error).toBeNotNull().otherwiseComplain();
-		Debugger.expect(error.getMessage()).toBeEqualTo("assertion error.").otherwiseComplain();
-	}
 }

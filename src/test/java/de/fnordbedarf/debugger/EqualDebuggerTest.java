@@ -95,14 +95,4 @@ public class EqualDebuggerTest
 		// act //assert
 		Debugger.expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
 	}
-
-	@Test
-	void testLongObjectToBeEqualToOtherLongObjectFailing() {
-		// arrange
-		Long max = Long.MAX_VALUE;
-		Long min = Long.MIN_VALUE;
-
-		// act //assert
-		Debugger.expect(max).toBeNotEqualTo(min).otherwiseComplain();
-	}
 }

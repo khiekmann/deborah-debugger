@@ -13,7 +13,7 @@ public class ShowDebuggerTest
 	@Test
 	public void stringThenExpectIt() {
 		// arrange
-		String expected = ".(ShowDebuggerTest.java:20): hello world!";
+		String expected = ".(Print.java:18): hello world!";
 		String showMe = "hello world!";
 
 		// act
@@ -26,7 +26,7 @@ public class ShowDebuggerTest
 	@Test
 	public void integerThenExpectIt() {
 		// arrange
-		String expected = ".(ShowDebuggerTest.java:33): 2147483647";
+		String expected = ".(Print.java:18): 2147483647";
 		Integer showMe = Integer.MAX_VALUE;
 
 		// act
@@ -39,7 +39,7 @@ public class ShowDebuggerTest
 	@Test
 	public void intThenExpectIt() {
 		// arrange
-		String expected = ".(ShowDebuggerTest.java:46): -1";
+		String expected = ".(Print.java:18): -1";
 		int showMe = -1;
 
 		// act
