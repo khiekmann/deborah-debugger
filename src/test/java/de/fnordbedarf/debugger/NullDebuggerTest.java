@@ -1,8 +1,7 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
 
-import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -27,7 +26,7 @@ public class NullDebuggerTest
 		Object nullObject = null;
 
 		// act // assert
-		expect(nullObject).toBeNull().otherwiseComplain();
+		Debugger.expect(nullObject).toBeNull().otherwiseComplain();
 	}
 
 	@Test
@@ -38,7 +37,7 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(nullObject).toBeNull().otherwiseComplain());
+						Debugger.expect(nullObject).toBeNull().otherwiseComplain());
 	}
 
 	@Test
@@ -47,7 +46,7 @@ public class NullDebuggerTest
 		Object aObject = new Object();
 
 		// act // assert
-		expect(aObject).toNotBeNull().otherwiseComplain();
+		Debugger.expect(aObject).toNotBeNull().otherwiseComplain();
 	}
 
 	@Test
@@ -56,7 +55,7 @@ public class NullDebuggerTest
 		Object aObject = new Object();
 
 		// act // assert
-		expect(aObject).toBeNotNull().otherwiseComplain();
+		Debugger.expect(aObject).toBeNotNull().otherwiseComplain();
 	}
 
 	@Test
@@ -66,7 +65,7 @@ public class NullDebuggerTest
 		Object anotherNullObject = null;
 
 		// act // assert
-		expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
+		Debugger.expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
 	}
 
 	@Test
@@ -78,7 +77,7 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(nullObject).toBeEqualTo(object).otherwiseComplain());
+						Debugger.expect(nullObject).toBeEqualTo(object).otherwiseComplain());
 	}
 
 	@Test
@@ -90,6 +89,6 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(object).toBeEqualTo(nullObject).otherwiseComplain());
+						Debugger.expect(object).toBeEqualTo(nullObject).otherwiseComplain());
 	}
 }

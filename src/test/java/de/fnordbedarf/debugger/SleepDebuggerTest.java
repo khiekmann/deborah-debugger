@@ -1,8 +1,6 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
-
-import static debugger.Debugger.expect;
 
 
 /**
@@ -21,7 +19,7 @@ public class SleepDebuggerTest
 		long duration = System.currentTimeMillis() - startTime;
 
 		// assert
-		expect(duration).toBeGreaterThanOrEqualTo(twoSeconds).otherwiseComplain();
-		expect(duration).toBeLessThan(twoSeconds + 20 /*millis*/).otherwiseComplain();
+		Debugger.expect(duration).toBeGreaterThanOrEqualTo(twoSeconds).otherwiseComplain();
+		Debugger.expect(duration).toBeLessThan(twoSeconds + 20 /*millis*/).otherwiseComplain();
 	}
 }

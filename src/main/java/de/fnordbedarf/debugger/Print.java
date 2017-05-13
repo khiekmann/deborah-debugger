@@ -1,4 +1,4 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,8 +1,7 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
 
-import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -16,7 +15,7 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(null).toBeEmpty().otherwiseComplain());
+						Debugger.expect(null).toBeEmpty().otherwiseComplain());
 	}
 
 	@Test
@@ -24,7 +23,7 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(null).toNotBeEmpty().otherwiseComplain());
+						Debugger.expect(null).toNotBeEmpty().otherwiseComplain());
 	}
 
 	@Test
@@ -32,13 +31,13 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(null).toBeNotEmpty().otherwiseComplain());
+						Debugger.expect(null).toBeNotEmpty().otherwiseComplain());
 	}
 
 	@Test
 	void testNewStringObjectBeEmpty() {
 		// arrange // act // assert
-		expect(new String()).toBeEmpty().otherwiseComplain();
+		Debugger.expect(new String()).toBeEmpty().otherwiseComplain();
 	}
 
 	@Test
@@ -46,7 +45,7 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(new String()).toNotBeEmpty().otherwiseComplain()
+						Debugger.expect(new String()).toNotBeEmpty().otherwiseComplain()
 		);
 	}
 
@@ -55,20 +54,20 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(new String()).toBeNotEmpty().otherwiseComplain()
+						Debugger.expect(new String()).toBeNotEmpty().otherwiseComplain()
 		);
 	}
 
 	@Test
 	void testStringToBeNotEmpty() {
 		// arrange // act // assert
-		expect("hello").toBeNotEmpty().otherwiseComplain();
+		Debugger.expect("hello").toBeNotEmpty().otherwiseComplain();
 	}
 
 	@Test
 	void testStringToNotBeEmpty() {
 		// arrange // act // assert
-		expect("hello").toNotBeEmpty().otherwiseComplain();
+		Debugger.expect("hello").toNotBeEmpty().otherwiseComplain();
 	}
 
 	@Test
@@ -76,7 +75,7 @@ public class EmptyDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-				expect("hello").toBeEmpty().otherwiseComplain()
+				Debugger.expect("hello").toBeEmpty().otherwiseComplain()
 		);
 	}
 }

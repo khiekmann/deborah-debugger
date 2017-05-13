@@ -1,9 +1,9 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static debugger.Debugger.exit;
+import static de.fnordbedarf.debugger.Debugger.exit;
 
 
 /**
@@ -17,24 +17,24 @@ class ExitDebuggerTest
 	@Disabled
 	@Test
 	void testExit() {
-		exit();
+		Debugger.exit();
 	}
 
 	@Disabled
 	@Test
 	void testExitWithException() {
-		exit(new Exception("Exception"));
+		Debugger.exit(new Exception("Exception"));
 	}
 
 	@Disabled
 	@Test
 	void testExitWithObject() {
-		exit(new Object());
+		Debugger.exit(new Object());
 	}
 
 	@Disabled
 	@Test
 	void testExitWithExitCode() {
-		exit(-1337);
+		Debugger.exit(-1337);
 	}
 }

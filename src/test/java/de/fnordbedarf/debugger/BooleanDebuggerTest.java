@@ -1,8 +1,7 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
 
-import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -14,7 +13,7 @@ public class BooleanDebuggerTest
 	@Test
 	void testToBeTrue() {
 		// arrange // act // assert
-		expect(true).toBeTrue().otherwiseComplain();
+		Debugger.expect(true).toBeTrue().otherwiseComplain();
 	}
 
 	@Test
@@ -22,13 +21,13 @@ public class BooleanDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(false).toBeTrue().otherwiseComplain());
+						Debugger.expect(false).toBeTrue().otherwiseComplain());
 	}
 
 	@Test
 	void testToBeFalse() {
 		// arrange // act // assert
-			expect(false).toBeFalse().otherwiseComplain();
+			Debugger.expect(false).toBeFalse().otherwiseComplain();
 	}
 
 	@Test
@@ -36,6 +35,6 @@ public class BooleanDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(true).toBeFalse().otherwiseComplain());
+						Debugger.expect(true).toBeFalse().otherwiseComplain());
 	}
 }

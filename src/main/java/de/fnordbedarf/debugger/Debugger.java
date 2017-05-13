@@ -1,9 +1,7 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
-
-import static debugger.Print.print;
 
 
 /**
@@ -22,7 +20,7 @@ public class Debugger
 	private boolean passed = false;
 
 	public static String show(Object object) {
-		return print(object).toConsole();
+		return Print.print(object).toConsole();
 	}
 
 	public static void exit()

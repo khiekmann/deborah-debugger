@@ -1,4 +1,4 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import animal.*;
 
-import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -35,7 +34,7 @@ public class EqualDebuggerTest
 		String sameMessage = message;
 
 		// act // assert
-		expect(message).toBeEqualTo(sameMessage).otherwiseComplain();
+		Debugger.expect(message).toBeEqualTo(sameMessage).otherwiseComplain();
 	}
 
 	@Test
@@ -47,14 +46,14 @@ public class EqualDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(message).toBeEqualTo(notSameMessage).otherwiseComplain());
+						Debugger.expect(message).toBeEqualTo(notSameMessage).otherwiseComplain());
 	}
 
 	@Test
 	void testDogEqualToDogUsingComparator() {
 		// arrange
 		// act // assert
-		expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals).otherwiseComplain();
+		Debugger.expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals).otherwiseComplain();
 	}
 
 	@Test
@@ -62,7 +61,7 @@ public class EqualDebuggerTest
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals).otherwiseComplain());
+						Debugger.expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals).otherwiseComplain());
 	}
 
 	@Test
@@ -72,7 +71,7 @@ public class EqualDebuggerTest
 		int oneAgain = one;
 
 		// act //assert
-		expect(one).toBeEqualTo(oneAgain).otherwiseComplain();
+		Debugger.expect(one).toBeEqualTo(oneAgain).otherwiseComplain();
 	}
 
 	@Test
@@ -84,7 +83,7 @@ public class EqualDebuggerTest
 		// act //assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(one).toBeEqualTo(two).otherwiseComplain());
+						Debugger.expect(one).toBeEqualTo(two).otherwiseComplain());
 	}
 
 	@Test
@@ -94,7 +93,7 @@ public class EqualDebuggerTest
 		Long maxAgain = max;
 
 		// act //assert
-		expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
+		Debugger.expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
 	}
 
 	@Test
@@ -104,6 +103,6 @@ public class EqualDebuggerTest
 		Long min = Long.MIN_VALUE;
 
 		// act //assert
-		expect(max).toBeNotEqualTo(min).otherwiseComplain();
+		Debugger.expect(max).toBeNotEqualTo(min).otherwiseComplain();
 	}
 }

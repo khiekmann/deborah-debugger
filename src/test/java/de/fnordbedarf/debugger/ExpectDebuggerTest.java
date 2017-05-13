@@ -1,8 +1,7 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
 
-import static debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -18,7 +17,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);
@@ -31,7 +30,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);
@@ -44,7 +43,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);
@@ -57,7 +56,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);
@@ -70,7 +69,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);
@@ -83,7 +82,7 @@ public class ExpectDebuggerTest
 		Debugger expected = new Debugger(object);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = Debugger.expect(object);
 
 		// assert
 		assertEquals(expected, actual);

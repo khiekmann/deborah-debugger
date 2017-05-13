@@ -1,4 +1,4 @@
-package debugger;
+package de.fnordbedarf.debugger;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
