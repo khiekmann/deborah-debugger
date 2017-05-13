@@ -8,33 +8,33 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class BooleanDebuggerTest
+public class GivenDebuggerBoolean
 {
 	@Test
-	void testToBeTrue() {
+	void whenTrueThenTrue() {
 		// arrange // act // assert
 		Debugger.expect(true).toBeTrue().otherwiseComplain();
 	}
 
 	@Test
-	void testToBeTrueFailing() {
+	void whenTrueToBeFalseThenError() {
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(false).toBeTrue().otherwiseComplain());
-	}
+						Debugger.expect(true).toBeFalse().otherwiseComplain());
+		}
 
 	@Test
-	void testToBeFalse() {
+	void whenFalseThenFalse() {
 		// arrange // act // assert
 			Debugger.expect(false).toBeFalse().otherwiseComplain();
 	}
 
 	@Test
-	void testToBeFalseFailing() {
+	void whenFalseToBeTrueThenError() {
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(true).toBeFalse().otherwiseComplain());
+						Debugger.expect(false).toBeTrue().otherwiseComplain());
 	}
 }

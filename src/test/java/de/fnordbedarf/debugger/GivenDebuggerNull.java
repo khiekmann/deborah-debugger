@@ -2,6 +2,7 @@ package de.fnordbedarf.debugger;
 
 import org.junit.jupiter.api.Test;
 
+import static de.fnordbedarf.debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -9,67 +10,70 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class NullDebuggerTest
+class GivenDebuggerNull
 {
 	@Test
-	void testConstructorWithNullObject() {
+	void whenNullThenDebuggerNotNull() {
 		// arrange // act
 		Debugger debugger = new Debugger(null);
 
 		// assert
 		assertNotNull(debugger);
+		expect(debugger).toBeNotNull();
+		expect(debugger).toNotBeNull();
 	}
 
 	@Test
-	void testToBeNull() {
+	void whenNullObjectThenToBeNull() {
 		// arrange
 		Object nullObject = null;
 
 		// act // assert
-		Debugger.expect(nullObject).toBeNull().otherwiseComplain();
+		expect(nullObject).toBeNull().otherwiseComplain();
+		expect(nullObject).toBeNull();
 	}
 
 	@Test
-	void testToBeNullFailing() {
+	void whenNullObjectToBeNullThenError() {
 		// arrange
 		Object nullObject = new Object();
 
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(nullObject).toBeNull().otherwiseComplain());
+						expect(nullObject).toBeNull().otherwiseComplain());
 	}
 
 	@Test
-	void testToNotBeNull() {
+	void whenNewObjectThenToNotBeNull() {
 		// arrange
 		Object aObject = new Object();
 
 		// act // assert
-		Debugger.expect(aObject).toNotBeNull().otherwiseComplain();
+		expect(aObject).toNotBeNull().otherwiseComplain();
 	}
 
 	@Test
-	void testToBeNotNull() {
+	void whenNewObjectThenToBeNotNull() {
 		// arrange
 		Object aObject = new Object();
 
 		// act // assert
-		Debugger.expect(aObject).toBeNotNull().otherwiseComplain();
+		expect(aObject).toBeNotNull().otherwiseComplain();
 	}
 
 	@Test
-	void testNullObjectToBeEqualToNullObject() {
+	void whenNullObjectThenEqualToToNextNullObject() {
 		// arrange
 		Object nullObject = null;
 		Object anotherNullObject = null;
 
 		// act // assert
-		Debugger.expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
+		expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
 	}
 
 	@Test
-	void testNullObjectToBeEqualToObjectFailing() {
+	void whenNullObjectToBeEqualToThenError() {
 		// arrange
 		Object nullObject = null;
 		Object object = new Object();
@@ -77,11 +81,11 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(nullObject).toBeEqualTo(object).otherwiseComplain());
+						expect(nullObject).toBeEqualTo(object).otherwiseComplain());
 	}
 
 	@Test
-	void testObjectToBeEqualToNullObjectFailing() {
+	void whenNewObjectToBeEqualToNullObjectThenError() {
 		// arrange
 		Object object = new Object();
 		Object nullObject = null;
@@ -89,6 +93,6 @@ public class NullDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(object).toBeEqualTo(nullObject).otherwiseComplain());
+						expect(object).toBeEqualTo(nullObject).otherwiseComplain());
 	}
 }

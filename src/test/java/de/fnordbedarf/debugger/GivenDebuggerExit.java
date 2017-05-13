@@ -3,8 +3,6 @@ package de.fnordbedarf.debugger;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static de.fnordbedarf.debugger.Debugger.exit;
-
 
 /**
  * Created by HiekmaHe on 05.05.2017.
@@ -12,29 +10,29 @@ import static de.fnordbedarf.debugger.Debugger.exit;
  *
  *
  */
-class ExitDebuggerTest
+class GivenDebuggerExit
 {
 	@Disabled
 	@Test
-	void testExit() {
+	void whenExitThenExit() {
 		Debugger.exit();
 	}
 
 	@Disabled
 	@Test
-	void testExitWithException() {
+	void whenExitThenExitWithException() {
 		Debugger.exit(new Exception("Exception"));
 	}
 
 	@Disabled
 	@Test
-	void testExitWithObject() {
+	void whenExitThenExitWithObject() {
 		Debugger.exit(new Object());
 	}
 
 	@Disabled
 	@Test
-	void testExitWithExitCode() {
+	void whenExitThenExitWithNumber() {
 		Debugger.exit(-1337);
 	}
 }

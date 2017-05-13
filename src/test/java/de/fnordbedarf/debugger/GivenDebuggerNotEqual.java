@@ -8,10 +8,10 @@ import static de.fnordbedarf.debugger.Debugger.expect;
 /**
  * Created by HiekmaHe on 13.05.2017.
  */
-public class NotEqualDebuggerTest
+class GivenDebuggerNotEqual
 {
 	@Test
-	void testLongObjectToBeEqualToOtherLongObjectFailing() {
+	void whenLongMaxThenToBeNotEquaToLongMin() {
 		// arrange
 		Long max = Long.MAX_VALUE;
 		Long min = Long.MIN_VALUE;
@@ -21,7 +21,17 @@ public class NotEqualDebuggerTest
 	}
 
 	@Test
-	void testObjectToBeEqualToOtherLongObjectFailing() {
+	void whenLongMaxThenToNotBeEquaToLongMin() {
+		// arrange
+		Long max = Long.MAX_VALUE;
+		Long min = Long.MIN_VALUE;
+
+		// act //assert
+		expect(max).toNotBeEqualTo(min).otherwiseComplain();
+	}
+
+	@Test
+	void whenObjectThenToBeNotEqualToOtherObject() {
 		// arrange
 		Object object = new Object();
 		Object otherObject = new Object();
@@ -31,7 +41,7 @@ public class NotEqualDebuggerTest
 	}
 
 	@Test
-	void testObjectToBeEqualToOtherLongObjectFailing2() {
+	void whenObjectThenNotToBeEqualToOtherObject() {
 		// arrange
 		Object object = new Object();
 		Object otherObject = new Object();

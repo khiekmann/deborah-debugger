@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import animal.*;
 
+import static de.fnordbedarf.debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class EqualDebuggerTest
+public class GivenDebuggerEqual
 {
 	private static CompareAnimals compareAnimals;
 
@@ -23,22 +24,21 @@ public class EqualDebuggerTest
 		animals.add(new Sloth());
 		animals.add(new Dog());
 		animals.add(new Cat());
-
 		compareAnimals = new CompareAnimals(animals);
 	}
 
 	@Test
-	void testStringObjectToBeEqualToSameStringObject() {
+	void whenStringThenEqualToSameString() {
 		// arrange
 		String message = "hi!";
 		String sameMessage = message;
 
 		// act // assert
-		Debugger.expect(message).toBeEqualTo(sameMessage).otherwiseComplain();
+		expect(message).toBeEqualTo(sameMessage).otherwiseComplain();
 	}
 
 	@Test
-	void testStringObjectToBeEqualToNotSameStringObjectFailing() {
+	void whenStringToBeEqualToDifferentStringThenError() {
 		// arrange
 		String message = "hi!";
 		String notSameMessage = "hello!";
@@ -46,36 +46,36 @@ public class EqualDebuggerTest
 		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(message).toBeEqualTo(notSameMessage).otherwiseComplain());
+						expect(message).toBeEqualTo(notSameMessage).otherwiseComplain());
 	}
 
 	@Test
-	void testDogEqualToDogUsingComparator() {
+	void whenDogThenEqualToDog() {
 		// arrange
 		// act // assert
-		Debugger.expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals).otherwiseComplain();
+		expect(new Dog()).toBeEqualTo(new Dog(), compareAnimals).otherwiseComplain();
 	}
 
 	@Test
-	void testDogEqualToCatUsingComparatorFailing() {
+	void whenDogEqualToCatThenError() {
 		// arrange // act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals).otherwiseComplain());
+						expect(new Dog()).toBeEqualTo(new Cat(), compareAnimals).otherwiseComplain());
 	}
 
 	@Test
-	void testIntToBeEqualToOtherInt() {
+	void whenOneThenToBeEqualToOne() {
 		// arrange
 		int one = 1;
 		int oneAgain = one;
 
 		// act //assert
-		Debugger.expect(one).toBeEqualTo(oneAgain).otherwiseComplain();
+		expect(one).toBeEqualTo(oneAgain).otherwiseComplain();
 	}
 
 	@Test
-	void testIntToBeEqualToOtherIntFailing() {
+	void whenOneToBeEqualToTwoThenError() {
 		// arrange
 		int one = 1;
 		int two = 2;
@@ -83,16 +83,16 @@ public class EqualDebuggerTest
 		// act //assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						Debugger.expect(one).toBeEqualTo(two).otherwiseComplain());
+						expect(one).toBeEqualTo(two).otherwiseComplain());
 	}
 
 	@Test
-	void testLongObjectToBeEqualToOtherLongObject() {
+	void whenMaxThenToBeEqualMax() {
 		// arrange
 		Long max = Long.MAX_VALUE;
 		Long maxAgain = max;
 
 		// act //assert
-		Debugger.expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
+		expect(max).toBeEqualTo(maxAgain).otherwiseComplain();
 	}
 }
