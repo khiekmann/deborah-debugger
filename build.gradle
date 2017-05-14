@@ -54,12 +54,14 @@ ext.log4jVersion         = '2.6.2'
 
 apply plugin: 'java'
 apply plugin: 'maven' // Publish on jitpack.io  https://jitpack.io/docs/BUILDING/
+apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'  // JUnit 5
 
-version = '1.0.0-SNAPSHOT'
-group = 'com.github.khiekmann' //  jitpackio
-sourceCompatibility = 1.8 // JUnit 5
+jar {
+	baseName = 'deborah-debugger'
+	version = '1.0.0-SNAPSHOT'
+}
 
 compileTestJava {
 	sourceCompatibility = 1.8
@@ -83,7 +85,8 @@ junitPlatform {
 			// exclude 'com.sample.excluded1', 'com.sample.excluded2'
 		}
 		//includeClassNamePattern '.*Spec'
-		includeClassNamePatterns '.*Test', '.*Tests'
+		// includeClassNamePatterns '.*Test', '.*Tests'
+		includeClassNamePatterns 'Given.*'
 		//logManager 'org.apache.logging.log4j.jul.LogManager'
 	}
 }
@@ -114,3 +117,6 @@ task wrapper(type: Wrapper) {
 	description = 'Generates gradlew[.bat] scripts'
 	gradleVersion = '3.0'
 }
+
+group = 'com.github.khiekmann' //  jitpackio
+sourceCompatibility = 1.8 // JUnit 5
