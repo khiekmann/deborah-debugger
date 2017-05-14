@@ -24,6 +24,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 language: java
-script: 
+script:
+  - "gradle version"
   - "gradle check"
   - "gradle assemble"
