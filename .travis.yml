@@ -14,7 +14,7 @@ before_install:
   - "chmod +x gradlew"
   - "sudo apt-get update"
   - "./gradlew --version"
-  - "./gradlew --wrapper"
+  - "./gradlew wrapper"
   - "./gradlew --version"
 
 #before_cache:
