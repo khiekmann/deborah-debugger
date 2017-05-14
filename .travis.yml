@@ -37,6 +37,5 @@ before_script:
 #  - "./gradlew version"
 
 script:
-  - "./gradlew version"
   - "./gradlew check"
   - "./gradlew assemble"
