@@ -13,28 +13,7 @@ sudo: required
 before_install:
   - "chmod +x gradlew"
   - "sudo apt-get update"
-  - "./gradlew --version"
   - "./gradlew wrapper"
-  - "./gradlew --version"
-
-#before_cache:
-#  - "rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock"
-#  - "rm -fr $HOME/.gradle/caches/*/plugin-resolution/"
-
-#cache:
-#  directories:
-#    - $HOME/.gradle/caches/
-#    - $HOME/.gradle/wrapper/
-
-
-before_script:
-#    - wget https://services.gradle.org/distributions/gradle-3.5-bin.zip
-#    - unzip gradle-3.5-bin.zip
-#    - export GRADLE_HOME=$PWD/gradle-3.5
-#    - export PATH=$GRADLE_HOME/bin:$PATH
-#  - "./gradlew version"
-#  - "./gradlew wrapper"
-#  - "./gradlew version"
 
 script:
   - "./gradlew check"
