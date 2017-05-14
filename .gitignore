@@ -3,10 +3,8 @@ Compilation
 target/*
 
 settings.gradle*
-.gradlew
-.gradlew.bat
 .gitattributes
-gradle*
+.gradle/*
 .gradle/*
 
 .idea*
