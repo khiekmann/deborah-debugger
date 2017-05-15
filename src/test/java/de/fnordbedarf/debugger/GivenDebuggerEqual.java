@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import animal.*;
 import de.fnordbedarf.debugger.animal.*;
 
 import static de.fnordbedarf.debugger.Debugger.expect;

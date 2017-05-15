@@ -2,6 +2,8 @@ package de.fnordbedarf.debugger;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -12,6 +14,7 @@ public class Debugger
 {
 	private final static String n = System.getProperty("line.separator");
 	private final static String murmur = "assertion error.";
+	private static final Logger logger = Logger.getLogger(Debugger.class.getCanonicalName());
 
 	private final Object this_;
 
@@ -113,11 +116,14 @@ public class Debugger
 
 	public String otherwiseComplain()
 	{
-		return otherwiseAnnounce(
-				n + "\u21AF \'" + classAndStringOf(this_) + "\'"
-						+ n + "\u21AF expected to be " + relationToOther.description + " but was"
-						+ n + "\u21AF \'" + classAndStringOf(other) + "\'"
-						+ n);
+		return otherwiseAnnounce(complainMessage());
+	}
+
+	private String complainMessage() {
+		return  n + "\u21AF \'" + classAndStringOf(this_) + "\'"
+				+ n + "\u21AF expected to be " + relationToOther.description + " but was"
+				+ n + "\u21AF \'" + classAndStringOf(other) + "\'"
+				+ n;
 	}
 
 	private String classAndStringOf(Object object) {
@@ -144,6 +150,18 @@ public class Debugger
 			message = "";
 		}
 		return message;
+	}
+
+	public String otherwiseLog()
+	{
+		return otherwiseLogAs(Level.SEVERE);
+	}
+
+	public String otherwiseLogAs(Level level)
+	{
+		String complainMessage = this.complainMessage();
+		logger.log(level, complainMessage);
+		return complainMessage;
 	}
 
 	private String showAndThrowAssertionFailedError(String message)

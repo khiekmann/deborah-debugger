@@ -1,5 +1,7 @@
 package de.fnordbedarf.debugger;
 
+import java.util.logging.Level;
+
 import org.junit.jupiter.api.Test;
 
 import static de.fnordbedarf.debugger.Debugger.expect;
@@ -101,5 +103,16 @@ class GivenDebuggerOtherwise
 		// assert
 		expect(assertionFailedError).toBeNotNull().otherwiseComplain();
 		expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(443997862).otherwiseComplain();
+	}
+
+	@Test
+	void whenLogThenLog() {
+		expect(true).toBeFalse().otherwiseLog();
+	}
+
+	@Test
+	void whenLogAsSevereThenLogAsSevere() {
+		Level severe = Level.SEVERE;
+		expect(true).toBeFalse().otherwiseLogAs(severe);
 	}
 }
