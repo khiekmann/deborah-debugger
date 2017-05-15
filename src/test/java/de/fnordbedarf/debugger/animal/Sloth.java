@@ -1,7 +1,4 @@
-package animal;
-
-import animal.Animal;
-
+package de.fnordbedarf.debugger.animal;
 
 /**
  * Created by HiekmaHe on 04.05.2017.

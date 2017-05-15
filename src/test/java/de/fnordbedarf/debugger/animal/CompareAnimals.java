@@ -1,4 +1,4 @@
-package animal;
+package de.fnordbedarf.debugger.animal;
 
 import java.util.ArrayList;
 import java.util.Comparator;

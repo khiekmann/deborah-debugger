@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import animal.*;
+import de.fnordbedarf.debugger.animal.*;
 
 import static de.fnordbedarf.debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertThrows;
