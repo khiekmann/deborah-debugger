@@ -65,6 +65,18 @@ public class Debugger
 		return new Debugger(object);
 	}
 
+	public static Debugger expectClassOf(Object object)
+	{
+		return new Debugger(classOf(object));
+	}
+
+	private static Object classOf(Object object) {
+		if (object == null) {
+			object = new NullObject();
+		}
+		return object;
+	}
+
 	public Debugger(Object object)
 	{
 		this_ = object;
