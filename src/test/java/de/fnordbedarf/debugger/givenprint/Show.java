@@ -15,7 +15,7 @@ class Show
 	@Test
 	void whenMessageThenShowClickableTextAndText() {
 		// arrange
-		String expected = ".(Show.java:21): hello world!";
+		String expected = ".(Show.java:22): hello world!";
 		String showMe = "hello world!";
 
 		// act
@@ -28,7 +28,7 @@ class Show
 	@Test
 	void whenMessageThenShowClickableTextAndText2() {
 		// arrange
-		String expected = ".(Show.java:34): 2147483647";
+		String expected = ".(Show.java:35): 2147483647";
 		Integer showMe = Integer.MAX_VALUE;
 
 		// act
@@ -41,7 +41,7 @@ class Show
 	@Test
 	void whenMessageThenShowClickableTextAndText3() {
 		// arrange
-		String expected = ".(Show.java:47): -1";
+		String expected = ".(Show.java:48): -1";
 		int showMe = -1;
 
 		// act
