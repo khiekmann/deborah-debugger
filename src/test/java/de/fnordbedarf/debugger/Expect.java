@@ -44,7 +44,7 @@ class Expect
 	@Test
 	void whenTrueObjectThenToBeEqualToTrueObject() {
 		// arrange
-		Boolean object = Boolean.TRUE;
+		Boolean object = java.lang.Boolean.TRUE;
 		Debugger expected = new Debugger(object);
 
 		// act

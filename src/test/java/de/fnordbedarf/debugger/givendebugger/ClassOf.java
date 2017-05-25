@@ -3,6 +3,7 @@ package de.fnordbedarf.debugger.givendebugger;
 import de.fnordbedarf.debugger.NullObject;
 import de.fnordbedarf.debugger.animal.Cat;
 import de.fnordbedarf.debugger.animal.Dog;
+import org.junit.jupiter.api.Test;
 
 import static de.fnordbedarf.debugger.Debugger.expect;
 import static de.fnordbedarf.debugger.Debugger.expectClassOf;
@@ -43,7 +44,7 @@ public class ClassOf {
     }
 
     @Test
-    public void whenNewDogThenToNotEqualToClassOfCat() {
+    public void whenNewCatThenToNotEqualToClassOfCat() {
         // arrange act assert
         expectClassOf(new Cat()).toNotBeEqualTo(Dog.class).otherwiseComplain();
     }
@@ -63,6 +64,6 @@ public class ClassOf {
     @Test
     public void whenNotNullThenNotNullObject() {
         // arrange act assert
-        expectClassOf(new Object).toNotBeEqual(NullObject.class).otherwiseComplain();
+        expectClassOf(new Object()).toNotBeEqualTo(NullObject.class).otherwiseComplain();
     }
 }
