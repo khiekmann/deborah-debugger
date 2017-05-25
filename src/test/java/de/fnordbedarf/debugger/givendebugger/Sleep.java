@@ -1,5 +1,6 @@
-package de.fnordbedarf.debugger;
+package de.fnordbedarf.debugger.givendebugger;
 
+import de.fnordbedarf.debugger.Debugger;
 import org.junit.jupiter.api.Test;
 
 

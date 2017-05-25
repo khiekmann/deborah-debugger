@@ -1,5 +1,6 @@
 package de.fnordbedarf.debugger;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -352,8 +353,66 @@ public class Debugger
 		return this;
 	}
 
-	public static String fail(String message)
+	static String fail(String message)
 	{
 		throw new AssertionFailedError(message);
 	}
+
+	public Debugger toBeAnArray() {
+		other(String.valueOf("Array expected"));
+		thisRelatesToOther(As.anArray);
+        passed(thisIsAnArray());
+		return this;
+	}
+
+    private boolean thisIsAnArray() {
+	    boolean isArray = false;
+	    if (this_ != null) { isArray = isArray(this_); }
+        return isArray;
+    }
+
+    private boolean isArray(Object object) {
+        return object.getClass().isArray();
+    }
+
+    public Debugger toNotBeAnArray() {
+        other(String.valueOf("No Array expected"));
+        thisRelatesToOther(As.notAnArray);
+        passed(thisIsNotAnArray());
+        return this;
+    }
+
+    private boolean thisIsNotAnArray() {
+        return ! thisIsAnArray();
+    }
+
+    public Debugger toHaveTheSameElementsAs(Object array) {
+        other(array);
+        thisRelatesToOther(As.havingTheSameElements);
+        passed(allElementsAreEqual());
+        return this;
+    }
+
+    private boolean allElementsAreEqual() {
+	    boolean allElementsAreEqual = false;
+	    if (isArray(this_)) {
+	        if (isArray(other)) {
+	            int thisLength = Array.getLength(this_);
+	            int otherLength = Array.getLength(other);
+	            if (thisLength == otherLength) {
+	                for (int i = 0; i < thisLength; i++) {
+	                    Object thisObject = Array.get(this_, i);
+	                    Object otherObject = Array.get(other, i);
+	                    if (thisObject.equals(otherObject)) {
+	                        allElementsAreEqual = true;
+                        } else {
+	                        allElementsAreEqual = false;
+	                        break;
+                        }
+                    }
+                }
+            }
+        }
+        return allElementsAreEqual;
+    }
 }

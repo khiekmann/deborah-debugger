@@ -1,7 +1,8 @@
-package de.fnordbedarf.debugger;
+package de.fnordbedarf.debugger.givendebugger;
 
 import java.util.ArrayList;
 
+import de.fnordbedarf.debugger.AssertionFailedError;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

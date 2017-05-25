@@ -1,7 +1,8 @@
-package de.fnordbedarf.debugger;
+package de.fnordbedarf.debugger.givendebugger;
 
 import java.util.logging.Level;
 
+import de.fnordbedarf.debugger.AssertionFailedError;
 import org.junit.jupiter.api.Test;
 
 import static de.fnordbedarf.debugger.Debugger.expect;

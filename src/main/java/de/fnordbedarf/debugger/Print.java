@@ -12,8 +12,8 @@ public class Print
 	private final static ArrayList<String> invalidClassNames =
 			new ArrayList(Arrays.asList(new String[]{
 					"java.lang.Thread",
-					"debugger.Print",
-					"debugger.Debugger"
+					"de.fnordbedarf.debugger.Print",
+					"de.fnordbedarf.debugger.Debugger"
 			}));
 	private final StackTraceElement[] elements = Thread.currentThread().getStackTrace();
 
@@ -79,7 +79,7 @@ public class Print
 		return elements[index];
 	}
 
-	public String toConsole()
+	String toConsole()
 	{
 		String message = createMessageFor(object);
 		System.out.println(message);

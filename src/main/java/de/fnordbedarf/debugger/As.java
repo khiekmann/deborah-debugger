@@ -16,7 +16,10 @@ public enum As
 	lessThan("less than"),
 	greaterThanOrEqualTo("greater than or equal to"),
 	empty("empty"),
-	notEmpty("not empty");
+	notEmpty("not empty"),
+	anArray("an array"),
+	notAnArray("not an array"),
+	havingTheSameElements("having the same elements");
 
 	public final String description;
 

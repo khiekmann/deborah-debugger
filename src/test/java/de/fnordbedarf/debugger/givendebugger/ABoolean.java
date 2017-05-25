@@ -1,5 +1,7 @@
-package de.fnordbedarf.debugger;
+package de.fnordbedarf.debugger.givendebugger;
 
+import de.fnordbedarf.debugger.AssertionFailedError;
+import de.fnordbedarf.debugger.Debugger;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
