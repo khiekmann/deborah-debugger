@@ -2,13 +2,14 @@ package de.fnordbedarf.debugger;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
+ *
  */
-public class ExecutionPoint
+class ExecutionPoint
 {
-	public final String fileName;
-	public final int lineNumber;
+	final String fileName;
+	final int lineNumber;
 
-	public ExecutionPoint(StackTraceElement stackTraceElement)
+	ExecutionPoint(StackTraceElement stackTraceElement)
 	{
 		fileName = stackTraceElement.getFileName();
 		lineNumber = stackTraceElement.getLineNumber();

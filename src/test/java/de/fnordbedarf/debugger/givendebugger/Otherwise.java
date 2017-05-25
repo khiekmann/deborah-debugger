@@ -10,10 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
+ *
  */
 class Otherwise
 {
-	@Test
+    private static final String n = System.getProperty("line.separator");
+
+    @Test
 	void whenMurmurThenMurmur() {
 		assertThrows(
 				AssertionFailedError.class, () ->
@@ -115,5 +118,16 @@ class Otherwise
 	void whenLogAsSevereThenLogAsSevere() {
 		Level severe = Level.SEVERE;
 		expect(true).toBeFalse().otherwiseLogAs(severe);
+	}
+
+	@Test
+	void whenLogAsSevereThenToBeEqualMessage() {
+		Level severe = Level.SEVERE;
+		String expected = "↯ 'java.lang.Boolean true'" + n +
+                "↯ expected to be false but was" + n +
+                "↯ 'java.lang.Boolean false'";
+		String message = expect(true).toBeFalse().otherwiseLogAs(severe);
+        Boolean containsMessage = message.contains(expected);
+		expect(containsMessage).toBeTrue().otherwiseComplain();
 	}
 }

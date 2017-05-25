@@ -2,6 +2,7 @@ package de.fnordbedarf.debugger;
 
 /**
  * Created by HiekmaHe on 04.05.2017.
+ *
  */
 public enum As
 {

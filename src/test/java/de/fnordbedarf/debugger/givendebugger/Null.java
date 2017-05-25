@@ -8,9 +8,9 @@ import static de.fnordbedarf.debugger.Debugger.expect;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 /**
  * Created by HiekmaHe on 05.05.2017.
+ *
  */
 class Null
 {
@@ -27,45 +27,29 @@ class Null
 
 	@Test
 	void whenNullObjectThenToBeNull() {
-		// arrange
-		Object nullObject = null;
-
-		// act // assert
-		expect(nullObject).toBeNull().otherwiseComplain();
-		expect(nullObject).toBeNull();
+		expect(null).toBeNull().otherwiseComplain();
+		expect(null).toBeNull();
 	}
 
 	@Test
 	void whenNullObjectToBeNullThenError() {
-		// arrange
-		Object nullObject = new Object();
-
-		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(nullObject).toBeNull().otherwiseComplain());
+						expect(new Object()).toBeNull().otherwiseComplain());
 	}
 
 	@Test
 	void whenNewObjectThenToNotBeNull() {
-		// arrange
-		Object aObject = new Object();
-
-		// act // assert
-		expect(aObject).toNotBeNull().otherwiseComplain();
+		expect(new Object()).toNotBeNull().otherwiseComplain();
 	}
 
 	@Test
 	void whenNewObjectThenToBeNotNull() {
-		// arrange
-		Object aObject = new Object();
-
-		// act // assert
-		expect(aObject).toBeNotNull().otherwiseComplain();
+		expect(new Object()).toBeNotNull().otherwiseComplain();
 	}
 
 	@Test
-	void whenNullObjectThenEqualToToNextNullObject() {
+	void whenNullObjectThenEqualToNextNullObject() {
 		// arrange
 		Object nullObject = null;
 		Object anotherNullObject = null;
@@ -74,16 +58,18 @@ class Null
 		expect(nullObject).toBeEqualTo(anotherNullObject).otherwiseComplain();
 	}
 
+    @Test
+    void whenNullThenNullFormatException() {
+        assertThrows(
+                NumberFormatException.class, () ->
+                        expect(null).toBeEqualTo(null).otherwiseComplain());
+    }
+
 	@Test
 	void whenNullObjectToBeEqualToThenError() {
-		// arrange
-		Object nullObject = null;
-		Object object = new Object();
-
-		// act // assert
 		assertThrows(
 				AssertionFailedError.class, () ->
-						expect(nullObject).toBeEqualTo(object).otherwiseComplain());
+						expect(null).toBeEqualTo(new Object()).otherwiseComplain());
 	}
 
 	@Test
@@ -97,4 +83,11 @@ class Null
 				AssertionFailedError.class, () ->
 						expect(object).toBeEqualTo(nullObject).otherwiseComplain());
 	}
+
+    @Test
+    void whenNewObjectToBeEqualToNullObjectThenNumberFormat() {
+        assertThrows(
+                NumberFormatException.class, () ->
+                        expect(new Object()).toBeEqualTo(null).otherwiseComplain());
+    }
 }

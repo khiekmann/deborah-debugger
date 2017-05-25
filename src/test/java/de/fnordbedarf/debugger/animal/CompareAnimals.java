@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 /**
  * Created by HiekmaHe on 04.05.2017.
+ *
  */
 public class CompareAnimals implements Comparator<Animal>
 {

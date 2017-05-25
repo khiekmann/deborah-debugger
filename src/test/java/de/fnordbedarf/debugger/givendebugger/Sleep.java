@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
+ * 
  */
-public class Sleep
+class Sleep
 {
 	@Test
-	public void whenSleepTwoSecondsThenSleepTwoSeconds() {
+	void whenSleepTwoSecondsThenSleepTwoSeconds() {
 		// arrange
 		long twoSeconds = 2000;
 		long startTime = System.currentTimeMillis();

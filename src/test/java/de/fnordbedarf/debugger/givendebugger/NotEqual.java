@@ -7,6 +7,7 @@ import static de.fnordbedarf.debugger.Debugger.expect;
 
 /**
  * Created by HiekmaHe on 13.05.2017.
+ *
  */
 class NotEqual
 {

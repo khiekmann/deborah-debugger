@@ -11,11 +11,12 @@ import static de.fnordbedarf.debugger.Debugger.expectClassOf;
 
 /**
  * Created by lora on 20.05.17.
+ *
  */
-public class ClassOf {
+class ClassOf {
 
     @Test
-    public void whenNullThenNotException() {
+    void whenNullThenNotException() {
         // arrange act assert
         boolean exceptionCaught = false;
         try {
@@ -27,49 +28,49 @@ public class ClassOf {
     }
 
     @Test
-    public void whenNewObjectThenEqualToClassOfObject() {
+    void whenNewObjectThenEqualToClassOfObject() {
         // arrange act assert
         expectClassOf(new Object()).toBeEqualTo(Object.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNewDogThenEqualToClassOfDog() {
+    void whenNewDogThenEqualToClassOfDog() {
         // arrange act assert
         expectClassOf(new Dog()).toBeEqualTo(Dog.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNewDogThenToNotEqualToClassOfCat() {
+    void whenNewDogThenToNotEqualToClassOfCat() {
         // arrange act assert
         expectClassOf(new Dog()).toNotBeEqualTo(Cat.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNewCatThenToNotEqualToClassOfCat() {
+    void whenNewCatThenToNotEqualToClassOfCat() {
         // arrange act assert
         expectClassOf(new Cat()).toNotBeEqualTo(Dog.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNewCatThenToNotEqualToClassOfAnimal() {
+    void whenNewCatThenToNotEqualToClassOfAnimal() {
         // arrange act assert
         expectClassOf(new Cat()).toNotBeEqualTo(Animal.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNullThenNullObject() {
+    void whenNullThenNullObject() {
         // arrange act assert
         expectClassOf(null).toBeEqualTo(NullObject.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNullObjectThenNullObject() {
+    void whenNullObjectThenNullObject() {
         // arrange act assert
         expectClassOf(new NullObject()).toBeEqualTo(NullObject.class).otherwiseComplain();
     }
 
     @Test
-    public void whenNotNullThenNotNullObject() {
+    void whenNotNullThenNotNullObject() {
         // arrange act assert
         expectClassOf(new Object()).toNotBeEqualTo(NullObject.class).otherwiseComplain();
     }

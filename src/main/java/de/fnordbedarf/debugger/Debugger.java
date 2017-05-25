@@ -32,7 +32,7 @@ public class Debugger
 		exit("Debugger shuts down.");
 	}
 
-	static void exit(String message)
+	private static void exit(String message)
 	{
 		show(message);
 		exit(message.hashCode());
@@ -94,20 +94,10 @@ public class Debugger
 	@Override
 	public boolean equals(Object object) {
 		boolean isEqual = false;
-		if (isADebugger(object)) {
-			isEqual = sameHashCodeAs(object);
+		if (object instanceof Debugger) {
+			isEqual = (hashCode() == object.hashCode());
 		}
 		return isEqual;
-	}
-
-	private boolean isADebugger(Object object)
-	{
-		return (object instanceof Debugger);
-	}
-
-	private boolean sameHashCodeAs(Object object)
-	{
-		return hashCode() == object.hashCode();
 	}
 
 	private void other(Object object)
@@ -201,10 +191,10 @@ public class Debugger
 		return bothEqual;
 	}
 
-	public int compareAsNumber(Object first, Object second) {
-		BigDecimal firstNumber = new BigDecimal(first.toString());
-		BigDecimal secondNumber = new BigDecimal(second.toString());
-		return firstNumber.compareTo(secondNumber);
+	private int compareAsNumber(Object first, Object second) {
+        BigDecimal firstNumber = new BigDecimal(String.valueOf(first));
+        BigDecimal secondNumber = new BigDecimal(String.valueOf(second));
+        return firstNumber.compareTo(secondNumber);
 	}
 
 	public Debugger toBeNull()
@@ -353,7 +343,7 @@ public class Debugger
 		return this;
 	}
 
-	static String fail(String message)
+	private static String fail(String message)
 	{
 		throw new AssertionFailedError(message);
 	}

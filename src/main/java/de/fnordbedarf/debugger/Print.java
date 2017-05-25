@@ -7,8 +7,9 @@ import java.util.Arrays;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
+ *
  */
-public class Print
+class Print
 {
 	private final static ArrayList<String> invalidClassNames =
 			new ArrayList(Arrays.asList(new String[]{

@@ -11,10 +11,10 @@ import static de.fnordbedarf.debugger.Debugger.expect;
  */
 public class Array {
 
-    private Integer[] arrayOfIntegers = {1, 2, 3};
-    private long[] arrayOfLongs = {1L, 2L, 3L};
-    private String[] arrayOfStrings = {"a", "b", "c"};
-    private Integer[] sameArrayOfIntegers = {1, 2, 3};
+    private final Integer[] arrayOfIntegers = {1, 2, 3};
+    private final long[] arrayOfLongs = {1L, 2L, 3L};
+    private final String[] arrayOfStrings = {"a", "b", "c"};
+    private final Integer[] sameArrayOfIntegers = {1, 2, 3};
 
     @Test
     public void whenArrayOfIntegersThenNotNull() {

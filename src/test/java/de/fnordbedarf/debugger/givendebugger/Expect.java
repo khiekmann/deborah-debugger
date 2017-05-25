@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by HiekmaHe on 05.05.2017.
+ *
  */
 class Expect
 {
 	@Test
 	void whenNullThenToBeEqualToNull() {
 		// arrange
-		Object object = null;
-		Debugger expected = new Debugger(object);
+		Debugger expected = new Debugger(null);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = expect(null);
 
 		// assert
 		assertEquals(expected, actual);
@@ -45,11 +45,10 @@ class Expect
 	@Test
 	void whenTrueObjectThenToBeEqualToTrueObject() {
 		// arrange
-		Boolean object = java.lang.Boolean.TRUE;
-		Debugger expected = new Debugger(object);
+		Debugger expected = new Debugger(Boolean.TRUE);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = expect(Boolean.TRUE);
 
 		// assert
 		assertEquals(expected, actual);
@@ -60,11 +59,10 @@ class Expect
 	@Test
 	void whenFalseObjectThenToBeEqualFalseObject() {
 		// arrange
-		Boolean object = Boolean.FALSE;
-		Debugger expected = new Debugger(object);
+		Debugger expected = new Debugger(Boolean.FALSE);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = expect(Boolean.FALSE);
 
 		// assert
 		assertEquals(expected, actual);
@@ -75,11 +73,10 @@ class Expect
 	@Test
 	void whenTrueThenToBeEqualTrue() {
 		// arrange
-		boolean object = true;
-		Debugger expected = new Debugger(object);
+		Debugger expected = new Debugger(true);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = expect(true);
 
 		// assert
 		assertEquals(expected, actual);
@@ -90,11 +87,10 @@ class Expect
 	@Test
 	void whenFalseThenToBeEqualFalse() {
 		// arrange
-		boolean object = false;
-		Debugger expected = new Debugger(object);
+		Debugger expected = new Debugger(false);
 
 		// act
-		Debugger actual = expect(object);
+		Debugger actual = expect(false);
 
 		// assert
 		assertEquals(expected, actual);
