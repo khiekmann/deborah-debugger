@@ -32,7 +32,7 @@ public class Debugger
 		exit("Debugger shuts down.");
 	}
 
-	public static void exit(String message)
+	static void exit(String message)
 	{
 		show(message);
 		exit(message.hashCode());

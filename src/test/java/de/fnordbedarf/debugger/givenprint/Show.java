@@ -1,4 +1,4 @@
-package de.fnordbedarf.debugger.givendebugger;
+package de.fnordbedarf.debugger.givenprint;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by HiekmaHe on 04.05.2017.
+ *
  */
 class Show
 {

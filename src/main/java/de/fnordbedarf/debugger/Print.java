@@ -1,5 +1,6 @@
 package de.fnordbedarf.debugger;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -81,17 +82,41 @@ public class Print
 
 	String toConsole()
 	{
-		String message = createMessageFor(object);
+		String message = createMessage();
 		System.out.println(message);
 		return message;
 	}
 
-	private String createMessageFor(Object object)
+	private String createMessage()
 	{
-		return String.format(".(%s:%d): %s", fileName(), lineNumber(), String.valueOf(object));
+		return String.format(".(%s:%d): %s", fileName(), lineNumber(), messageOfObject());
 	}
 
-	private String fileName()
+    private Object messageOfObject() {
+	    String message = String.valueOf(object);
+	    if (objectIsArray()) {
+            message = arrayedValueOfObject();
+        }
+        return message;
+    }
+
+    private boolean objectIsArray() {
+        return object.getClass().isArray();
+    }
+
+    private String arrayedValueOfObject() {
+	    StringBuilder builder = new StringBuilder();
+	    builder.append(object.getClass().getCanonicalName());
+	    builder.append(" [ ");
+	    for ( int index = 0; index < Array.getLength(object); index++) {
+	         builder
+                     .append(Array.get(object, index))
+                     .append(", ");
+        }
+        return builder.append("]").toString();
+    }
+
+    private String fileName()
 	{
 		return executionPointToPrepend.fileName;
 	}
