@@ -74,7 +74,7 @@ public class Debugger
 		if (object == null) {
 			object = new NullObject();
 		}
-		return object;
+		return object.getClass();
 	}
 
 	public Debugger(Object object)

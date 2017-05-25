@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Created by HiekmaHe on 05.05.2017.
  */
-public class Boolean
+public class ABoolean
 {
 	@Test
 	void whenTrueThenTrue() {

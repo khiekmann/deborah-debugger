@@ -71,7 +71,7 @@ class Otherwise
 
 		// assert
 		expect(assertionFailedError).toBeNotNull().otherwiseComplain();
-		expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(-882627246).otherwiseComplain();
+		expect(assertionFailedError.getMessage().hashCode()).toBeEqualTo(1947453602).otherwiseComplain();
 	}
 
 	@Test
